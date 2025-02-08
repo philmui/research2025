@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "research2025"
+version = "0.1.0"
+description = ""
+authors = ["Phil Mui <thephilmui@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.1"
+llama-index-core = "^0.12.16.post1"
+llama-index-llms-ollama = "^0.5.1"
+llama-index-llms-openai = "^0.3.18"
+llama-index-llms-openrouter = "^0.3.1"
+ipykernel = "^6.29.5"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
