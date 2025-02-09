@@ -17,7 +17,7 @@ This Spring, we focus on understanding and developing AI agents that can autonom
 - Introduction to autonomous agents and decision-making
 - Basic agent architectures and frameworks
 
-### Part 2: Applied Projects
+### Part 2: Applied Research & Engineering
 - Building simple AI agents using popular frameworks
 - Implementing goal-oriented behavior
 - Working with APIs and external tools
