@@ -186,3 +186,8 @@ public/favicon_io.zip
 
 # perm files
 *.pem
+
+local/
+
+**/storage/**
+**/logs/**
