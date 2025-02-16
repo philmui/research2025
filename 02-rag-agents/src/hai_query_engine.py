@@ -59,9 +59,9 @@ async def main():
     
     query_str = input("==> What question do you have about the HAI 2024 report? ")
     while len(query_str.strip()) > 0:
-        response = await hai_engine.achat("What is the general trend of A.I. in 2024 and beyond? ")
+        response = await hai_engine.achat(query_str.strip())
         print(f"\n\tAgent Response: {response.response}")
-        query_str = input("\n==> What question do you have about the HAI 2024 report?")
+        query_str = input("\n==> What question do you have about the HAI 2024 report?" )
     
     print("\nThank you for using this awesome tool!!! 👍")
     
