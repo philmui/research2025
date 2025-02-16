@@ -1,0 +1,60 @@
+What is the Commission File Number for Salesforce, Inc.?
+What was the total revenue of Salesforce, Inc. in FY24?
+Can you compare/contrast the total revenue of Salesforce, Inc. for FY23 and FY24?
+Did the total revenue of Salesforce, Inc. increase or decrease from FY22 to FY24?
+What is the title of the first item under PART I. FINANCIAL INFORMATION?
+What was the total revenue for Tesla in March 2025?
+Can you compare/contrast the revenue growth of Tesla from FY24 to FY25 and identify key drivers?
+Did Tesla's revenue increase or decrease year-over-year in FY25 compared to FY24?
+What is the total current assets for Salesforce, Inc. as of April 30, 2024?
+What was the total current assets for Salesforce, Inc. as of January 31, 2025?
+Can you compare/contrast the total current assets of Salesforce, Inc. in Q1/Q2 2024 and offer explanations for the change?
+Did the total current assets of Salesforce, Inc. increase or decrease from Q3 to Q4 2024?
+What was the net income of Salesforce, Inc. for the three months ended April 30, 2024?
+What were the total revenues of Tesla in January 2025?
+Can you compare/contrast the revenue growth of Tesla from Q1 to Q2 2025 and explain the factors contributing to this change?
+Did the revenue of Tesla increase or decrease year-over-year for the first two quarters of 2025?
+What is the net income for Salesforce, Inc. for the three months ended April 30, 2024?
+What was the net income of Salesforce, Inc. for the three months ended January 31, 2025?
+Can you compare/contrast the net income of Salesforce, Inc. for the three months ended April 30, 2024 and July 31, 2024?
+Did the net income of Salesforce, Inc. increase or decrease in 2025 compared to 2024?
+What is the total stockholders' equity for Salesforce, Inc. at April 30, 2024?
+What was the total revenue of Tesla in March 2025?
+Can you compare/contrast the revenue growth of Tesla from FY24 to FY25 and identify key drivers?
+Did the revenue of Tesla increase or decrease in FY25 compared to FY24?
+Base Question: What is the total stockholders' equity for Salesforce, Inc. at April 30, 2024?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What was the net income of Microsoft in June 2025?
+Can you analyze the impact of stock-based compensation on total stockholders' equity for Salesforce, Inc. over FY24 and FY25?
+Did the total stockholders' equity of Salesforce, Inc. increase or decrease from FY23 to FY24?
+Base Question: What is the total debt outstanding for Alphabet Inc. at September 30, 2024?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What was the cash and cash equivalents of Amazon in December 2025?
+Can you compare/contrast the capital structure of Alphabet Inc. from FY23 to FY24 and identify key factors influencing debt levels?
+Did the total debt outstanding for Alphabet Inc. increase or decrease in FY25 compared to FY24?
+What was the net cash used by investing activities for Salesforce, Inc. during the first quarter of 2024?
+What were the total revenues of Tesla in March 2025?
+Can you compare/contrast the revenue growth of Tesla from Q1 2024 to Q1 2025 and explain the factors contributing to this change?
+Did Tesla's revenue increase or decrease year-over-year in 2025 compared to 2024?
+What is the total amount of cash paid during the period for interest and income taxes, net of tax refunds for both Salesforce, Inc. in the three months ended April 30, 2024 and 2023?
+Base Question: What is the total amount of cash paid during the period for interest and income taxes, net of tax refunds for both Salesforce, Inc. in the three months ended April 30, 2024 and 2023?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What is the total amount of cash paid during the period for interest and income taxes, net of tax refunds for both Salesforce, Inc. in the three months ended January 31, 2025 and 2024?
+Can you compare/contrast the total amount of cash paid for interest and income taxes, net of tax refunds for Salesforce, Inc. in the three months ended April 30, 2023 and 2024?
+Did the total amount of cash paid for interest and income taxes, net of tax refunds for Salesforce, Inc. increase or decrease from 2023 to 2025?
+What is the fiscal year end date for Salesforce, Inc.?
+What was the net income of Tesla in March 2025?
+Can you compare/contrast the revenue growth of Tesla from FY24 to FY25 Q1?
+Did Tesla's gross margin increase or decrease in FY25 compared to FY24?
+What percentage of total assets were located outside the Americas as of April 30, 2024?
+What was the net income of Tesla in March 2025?
+Can you compare/contrast the revenue growth of Shopify in FY24 vs. FY25 and offer explanations for the change?
+Did the gross margin of Amazon increase or decrease in FY24 compared to FY23?
+What is the criteria for recognizing revenue if the consideration promised in a contract includes a variable amount, such as overage fees, contingent fees, or service level penalties?
+Base Question: What is the criteria for recognizing revenue if the consideration promised in a contract includes a variable amount, such as overage fees, contingent fees, or service level penalties?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What are the specific accounting treatments for overage fees and how do they impact revenue recognition in 2025?

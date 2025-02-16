@@ -1,0 +1,112 @@
+Can you provide a detailed example of recognizing contingent fees as revenue in 2024?
+How does the accounting treatment for service level penalties differ from other variable consideration amounts, such as overage fees?
+Base Question: What is the criteria for recognizing revenue if the consideration promised in a contract includes a variable amount, such as overage fees, contingent fees, or service level penalties?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+How do changes in accounting standards impact the recognition of revenue from variable consideration amounts in 2025?
+Can you compare/contrast the accounting treatments for overage fees and contingent fees in 2024?
+What are the implications of the new revenue standard on the accounting treatment for service level penalties in 2025?
+What is the typical payment term for customers of Salesforce, and how are amounts invoiced recorded in accounts receivable?
+What was the total revenue growth rate of Tesla from FY24 to FY25 for each quarter?
+Can you compare/contrast the revenue growth rates of Tesla in Q1 and Q4 FY24 with those in Q1 and Q4 FY25?
+Did Tesla's revenue growth rate increase or decrease in FY25 compared to FY24, and what factors contributed to this change?
+What is the average period of benefit used for amortizing capitalized costs related to new revenue contracts, and how long does this period reflect?
+What was the total amount of stock-based compensation expense recognized by Tesla in FY24?
+Can you compare/contrast the stock-based compensation expense recognized by Tesla in FY23 and FY24, and offer explanations for the change?
+Did the stock-based compensation expense as a percentage of revenue increase or decrease from FY23 to FY24?
+What was the total amount of intangible asset amortization expense recognized by Amazon in Q1FY25?
+Can you compare/contrast the intangible asset amortization expense recognized by Amazon in Q4FY24 and Q1FY25, and offer explanations for the change?
+Did the intangible asset amortization expense as a percentage of revenue increase or decrease from Q4FY24 to Q1FY25?
+What was the total amount of research and development expenses recognized by Microsoft in FY24?
+Can you compare/contrast the research and development expenses recognized by Microsoft in FY23 and FY24, and offer explanations for the change?
+Did the research and development expenses as a percentage of revenue increase or decrease from FY23 to FY24?
+What type of investments are recorded at cost and adjusted for impairment events, with associated gains and losses recorded through gains (losses) on strategic investments?
+Base Question: What was the total revenue of Tesla in FY24?
+Valid 10Qs: [2025 Q1, 2024 Q4, 2024 Q3]
+Question Variations:
+What was the average quarterly revenue growth rate for Tesla from FY23 to FY24?
+Can you compare/contrast the revenue growth rates of Tesla's automotive and energy segments in FY24?
+Did Tesla's total revenue increase or decrease in FY24 compared to FY23?
+Base Question: What is the definition of a material weakness in internal control over financial reporting (ICFR)?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+Can you provide examples of material weaknesses in ICFR that have been identified by Tesla in previous years?
+How do material weaknesses in ICFR impact the financial statements and disclosures of a company like Tesla?
+What steps does Tesla take to remediate material weaknesses in ICFR?
+Base Question: What is the accounting treatment for lease modifications that result in an increase in the present value of a lease liability?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+Can you explain how Tesla accounts for lease modifications that result in a decrease in the present value of a lease liability?
+How do lease modification accounting changes impact the financial statements and disclosures of a company like Tesla?
+What is the impact of lease modification accounting on Tesla's lease liability and cash flows from operations?
+What is the method used by the Company to measure certain of its strategic investments, including privately held debt and equity securities, at fair value?
+What was the total revenue of Tesla in March 2025?
+Can you compare/contrast the total revenue of Tesla in January/March 2025 and offer explanations for the change?
+Did the total revenue of Tesla increase or decrease by year-over-year from March 2024 to March 2025?
+What is the method used by the Company to measure certain of its strategic investments, including privately held debt and equity securities, at fair value?
+Can you compare/contrast the accounting policies for measuring fair value of strategic investments between Tesla's Q1 2024 and Q1 2025 filings?
+Did Tesla adopt a new accounting policy for measuring fair value of strategic investments in 2025?
+What was the net income of Amazon in December 2024?
+Can you analyze the impact of changes in tax laws on Amazon's net income from December 2023 to December 2024?
+Did Amazon's net income increase or decrease by year-over-year from December 2022 to December 2024?
+What is the basis used by the Company to determine the net present value of future minimum lease payments for operating leases?
+What was the total stock-based compensation expense recognized by the Company in FY24?
+Can you compare/contrast the stock-based compensation expense recognized by the Company in FY23 and FY24, and offer explanations for the change?
+Did the total stock-based compensation expense as a percentage of net income increase or decrease in FY24 compared to FY23?
+What was the average number of shares outstanding during FY24?
+Can you calculate the weighted-average share price of the Company's common stock for FY24?
+Did the average number of shares outstanding during FY24 differ significantly from the average number of shares outstanding during FY23?
+What is the total amount of debt issued by the Company in FY24?
+Can you compare/contrast the total amount of debt issued by the Company in FY23 and FY24, and offer explanations for the change?
+Did the total amount of debt issued by the Company increase or decrease in FY24 compared to FY23?
+What is the maximum duration of the measurement period for business combinations, during which the Company may record adjustments to fair value?
+What was the total number of shares repurchased by Tesla in FY24?
+Can you compare/contrast the share repurchase activity of Tesla in FY23 and FY24?
+Did Tesla's share repurchase program increase or decrease in FY24 compared to FY23?
+Base Question: What is the Company's policy on hedging financial instruments for risk management purposes?
+Valid 10Qs: [2024 Q1, 2024 Q2]
+Question Variations:
+Can you explain how the Company's hedge accounting policies changed between FY23 and FY24?
+Did the Company's use of hedging instruments increase or decrease in FY24 compared to FY23?
+Base Question: What is the Company's policy on revenue recognition for sales of software licenses?
+Valid 10Qs: [2024 Q1, 2023 Q4]
+Question Variations:
+Can you compare/contrast the Company's revenue recognition policies for software licenses between FY23 and FY24?
+Did the Company's use of the new revenue standard impact its revenue recognition practices in FY24?
+What is the method used by the Company for accounting for income taxes, specifically under which method are deferred tax assets and liabilities determined?
+What was the total revenue of Tesla in March 2025?
+Can you compare/contrast the revenue growth of Tesla from FY24 to FY25 and identify key drivers?
+Did the revenue of Tesla increase or decrease year-over-year for each quarter of FY25?
+Base Question: What is the method used by the Company for accounting for income taxes, specifically under which method are deferred tax assets and liabilities determined?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What was the effective tax rate of Amazon in FY24?
+Can you explain how changes in tax laws impacted Amazon's deferred tax assets and liabilities over FY24?
+Base Question: What is the total stock-based compensation expense for Alphabet in Q1 FY25?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+Can you compare/contrast the stock-based compensation expense of Google from Q1 to Q3 FY24 and identify trends?
+Did the stock-based compensation expense of Alphabet increase or decrease year-over-year for each quarter of FY25?
+What is the criteria for recognizing interest accrued and penalties related to unrecognized tax benefits?
+What was the total revenue of Tesla in FY24?
+Can you compare/contrast the revenue growth of Tesla from FY23 to FY24 and offer explanations for the change?
+Did the revenue of Tesla increase or decrease in each quarter of FY24 compared to the same quarter in FY23?
+Base Question: What is the criteria for recognizing interest accrued and penalties related to unrecognized tax benefits?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What was the total provision for income taxes of Amazon in FY24?
+Can you compare/contrast the effective tax rate of Netflix from FY23 to FY24 and offer explanations for the change?
+Did the provision for income taxes of Facebook increase or decrease in each quarter of FY24 compared to the same quarter in FY23?
+Base Question: What is the criteria for recognizing interest accrued and penalties related to unrecognized tax benefits?
+Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
+Question Variations:
+What was the total depreciation expense of Apple in FY24?
+Can you compare/contrast the research and development expenses of Microsoft from FY23 to FY24 and offer explanations for the change?
+Did the depreciation expense of Alphabet increase or decrease in each quarter of FY24 compared to the same quarter in FY23?
+What is the effective date for the new accounting pronouncement ASU 2023-07, "Segment Reporting (Topic 280): Improvements to Reportable Segment Disclosures"?
+Base Question: What was the total revenue of Tesla in FY24?
+Valid 10Qs: [2025 Q1, 2024 Q4, 2024 Q3]
+Question Variations:
+What was the average quarterly revenue growth rate for Tesla from FY23 to FY24?
+Can you compare/contrast the revenue growth rates of Tesla's automotive and energy segments in FY24?
+Did Tesla's total revenue increase or decrease in FY24 compared to FY23?
