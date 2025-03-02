@@ -25,15 +25,15 @@ Did the revenue of Tesla increase or decrease in FY25 compared to FY24?
 Base Question: What is the total stockholders' equity for Salesforce, Inc. at April 30, 2024?
 Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
 Question Variations:
-What was the net income of Microsoft in June 2025?
+What was the net income of Tesla in June 2025?
 Can you analyze the impact of stock-based compensation on total stockholders' equity for Salesforce, Inc. over FY24 and FY25?
 Did the total stockholders' equity of Salesforce, Inc. increase or decrease from FY23 to FY24?
-Base Question: What is the total debt outstanding for Alphabet Inc. at September 30, 2024?
+Base Question: What is the total debt outstanding for Amazon, Inc. at September 30, 2024?
 Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
 Question Variations:
-What was the cash and cash equivalents of Amazon in December 2025?
-Can you compare/contrast the capital structure of Alphabet Inc. from FY23 to FY24 and identify key factors influencing debt levels?
-Did the total debt outstanding for Alphabet Inc. increase or decrease in FY25 compared to FY24?
+What was the cash and cash equivalents of Microsoft in December 2025?
+Can you compare/contrast the debt-to-equity ratio of Amazon, Inc. from FY24 to FY25 and identify key factors contributing to the change?
+Did the total debt outstanding of Amazon, Inc. increase or decrease in FY25 compared to FY24?
 What was the net cash used by investing activities for Salesforce, Inc. during the first quarter of 2024?
 What were the total revenues of Tesla in March 2025?
 Can you compare/contrast the revenue growth of Tesla from Q1 2024 to Q1 2025 and explain the factors contributing to this change?
@@ -43,8 +43,8 @@ Base Question: What is the total amount of cash paid during the period for inter
 Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
 Question Variations:
 What is the total amount of cash paid during the period for interest and income taxes, net of tax refunds for both Salesforce, Inc. in the three months ended January 31, 2025 and 2024?
-Can you compare/contrast the total amount of cash paid for interest and income taxes, net of tax refunds for Salesforce, Inc. in the three months ended April 30, 2023 and 2024?
-Did the total amount of cash paid for interest and income taxes, net of tax refunds for Salesforce, Inc. increase or decrease from 2023 to 2025?
+Can you compare/contrast the total amount of cash paid for interest and income taxes between Salesforce, Inc. in the three months ended April 30, 2023 and 2024?
+Did the total amount of cash paid for interest and income taxes increase or decrease from 2023 to 2025?
 What is the fiscal year end date for Salesforce, Inc.?
 What was the net income of Tesla in March 2025?
 Can you compare/contrast the revenue growth of Tesla from FY24 to FY25 Q1?
@@ -53,8 +53,8 @@ What percentage of total assets were located outside the Americas as of April 30
 What was the net income of Tesla in March 2025?
 Can you compare/contrast the revenue growth of Shopify in FY24 vs. FY25 and offer explanations for the change?
 Did the gross margin of Amazon increase or decrease in FY24 compared to FY23?
-What is the criteria for recognizing revenue if the consideration promised in a contract includes a variable amount, such as overage fees, contingent fees, or service level penalties?
-Base Question: What is the criteria for recognizing revenue if the consideration promised in a contract includes a variable amount, such as overage fees, contingent fees, or service level penalties?
+What is the criteria for recognizing revenue when it comes to consideration promised in a contract that includes a variable amount, such as overage fees, contingent fees, or service level penalties?
+Base Question: What is the criteria for recognizing revenue when it comes to consideration promised in a contract that includes a variable amount, such as overage fees, contingent fees, or service level penalties?
 Valid 10Qs: [2024 Q1, 2024 Q2, 2024 Q3]
 Question Variations:
-What are the specific accounting treatments for overage fees and how do they impact revenue recognition in 2025?
+What are the specific accounting treatments for recognizing revenue from contracts with variable amounts in 2025?

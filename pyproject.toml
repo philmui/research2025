@@ -9,7 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
 ipykernel = "^6.29.5"
-llama-index-core = "^0.12.16.post1"
+llama-index-core = "^0.12.18"
 llama-index-llms-ollama = "^0.5.1"
 llama-index-llms-openai = "^0.3.18"
 llama-index-llms-openrouter = "^0.3.1"
@@ -20,6 +20,19 @@ llama-index-finetuning = "^0.3.0"
 loguru = "^0.7.3"
 python-dotenv = "^1.0.1"
 spacy = "^3.8.4"
+ipinfo = "^5.1.1"
+llama-index-tools-mcp = "^0.1.0"
+geopy = "^2.4.1"
+arcgis = "^2.4.0"
+ragas = {git = "https://github.com/explodinggradients/ragas"}
+ipywidgets = "^8.1.5"
+sacrebleu = "^2.5.1"
+llama-index-embeddings-openai = "^0.3.1"
+requests = ">=2.30.0,<2.32.0"
+apify-client = "^1.9.2"
+burr = {extras = ["start"], version = "^0.39.1"}
+jupyter = "^1.1.1"
+graphviz = "^0.20.3"
 
 
 [tool.poetry.group.dev.dependencies]
