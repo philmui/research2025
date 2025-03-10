@@ -37,6 +37,7 @@ pillow = "^11.1.0"
 langchain-community = "^0.3.19"
 unstructured = {extras = ["md"], version = "^0.16.25"}
 libmagic = "^1.0"
+tavily-python = "^0.5.1"
 
 
 [tool.poetry.group.dev.dependencies]

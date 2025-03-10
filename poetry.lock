@@ -7433,6 +7433,22 @@ files = [
 widechars = ["wcwidth"]
 
 [[package]]
+name = "tavily-python"
+version = "0.5.1"
+description = "Python wrapper for the Tavily API"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "tavily_python-0.5.1-py3-none-any.whl", hash = "sha256:169601f703c55cf338758dcacfa7102473b479a9271d65a3af6fc3668990f757"},
+    {file = "tavily_python-0.5.1.tar.gz", hash = "sha256:44b0eefe79a057cd11d3cd03780b63b4913400122350e38285acfb502c2fffc1"},
+]
+
+[package.dependencies]
+httpx = "*"
+requests = "*"
+tiktoken = ">=0.5.1"
+
+[[package]]
 name = "tenacity"
 version = "9.0.0"
 description = "Retry code until it succeeds"
@@ -8789,4 +8805,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.13"
-content-hash = "4a732b108b667858efc78cbe0e71617e2913e3e64e254d1e49ac1f2e445e65ac"
+content-hash = "636f5678ed70eb33c95b500add117f3f0dbab2c10daedc278af16c3ccee7550f"
