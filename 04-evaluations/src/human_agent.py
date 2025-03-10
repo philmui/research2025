@@ -4,6 +4,7 @@ load_dotenv(find_dotenv())
 import asyncio
 
 from llama_index.llms.ollama import Ollama
+from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core.agent.workflow import AgentWorkflow
 from llama_index.core.workflow import (
@@ -12,13 +13,14 @@ from llama_index.core.workflow import (
     HumanResponseEvent,
 )
 
-llm = Ollama(model="llama3.2:3b-instruct-q8_0", temperature=0.01, timeout=120)
+# llm = Ollama(model="llama3.2:3b-instruct-q8_0", temperature=0.01, timeout=120)
+llm = OpenAI(model="gpt-4o-mini", temperature=0.01, timeout=120)
 
 async def dangerous_task(ctx: Context) -> str:
     """A dangerous task that requires human confirmation."""
     ctx.write_event_to_stream(
         InputRequiredEvent(
-            prefix="Are you sure you want to proceed?",
+            prefix="Are you sure you want to proceed? ",
             user_name="Logan",
         )
     )
