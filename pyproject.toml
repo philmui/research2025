@@ -8,36 +8,35 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
+apify-client = "^1.9.2"
+arcgis = "^2.4.0"
+burr = {extras = ["start"], version = "^0.39.1"}
+geopy = "^2.4.1"
+graphviz = "^0.20.3"
+ipinfo = "^5.1.1"
 ipykernel = "^6.29.5"
+ipywidgets = "^8.1.5"
+jupyter = "^1.1.1"
+langchain-community = "^0.3.19"
+llama-index-tools-mcp = "^0.1.0"
 llama-index-core = "^0.12.18"
 llama-index-llms-ollama = "^0.5.1"
 llama-index-llms-openai = "^0.3.18"
 llama-index-llms-openrouter = "^0.3.1"
 llama-index-llms-openllm = "^0.4.1"
 llama-index-embeddings-ollama = "^0.5.0"
+llama-index-embeddings-openai = "^0.3.1"
 llama-index-readers-file = "^0.4.4"
 llama-index-finetuning = "^0.3.0"
 loguru = "^0.7.3"
-python-dotenv = "^1.0.1"
-spacy = "^3.8.4"
-ipinfo = "^5.1.1"
-llama-index-tools-mcp = "^0.1.0"
-geopy = "^2.4.1"
-arcgis = "^2.4.0"
-ragas = {git = "https://github.com/explodinggradients/ragas"}
-ipywidgets = "^8.1.5"
-sacrebleu = "^2.5.1"
-llama-index-embeddings-openai = "^0.3.1"
-requests = ">=2.30.0,<2.32.0"
-apify-client = "^1.9.2"
-burr = {extras = ["start"], version = "^0.39.1"}
-jupyter = "^1.1.1"
-graphviz = "^0.20.3"
 pillow = "^11.1.0"
-langchain-community = "^0.3.19"
-unstructured = {extras = ["md"], version = "^0.16.25"}
-libmagic = "^1.0"
+python-dotenv = "^1.0.1"
+ragas = {git = "https://github.com/explodinggradients/ragas"}
+requests = ">=2.30.0,<2.32.0"
+sacrebleu = "^2.5.1"
+spacy = "^3.8.4"
 tavily-python = "^0.5.1"
+unstructured = {extras = ["md"], version = "^0.16.25"}
 
 
 [tool.poetry.group.dev.dependencies]
