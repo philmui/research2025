@@ -11,6 +11,8 @@ python = ">=3.11,<3.13"
 apify-client = "^1.9.2"
 arcgis = "^2.4.0"
 burr = {extras = ["start"], version = "^0.39.1"}
+clip = {git = "https://github.com/openai/CLIP.git"}
+ftfy = "^6.3.1"
 geopy = "^2.4.1"
 graphviz = "^0.20.3"
 ipinfo = "^5.1.1"
@@ -29,7 +31,7 @@ llama-index-embeddings-openai = "^0.3.1"
 llama-index-readers-file = "^0.4.4"
 llama-index-finetuning = "^0.3.0"
 loguru = "^0.7.3"
-pillow = "^11.1.0"
+matplotlib = "^3.10.1"
 python-dotenv = "^1.0.1"
 ragas = {git = "https://github.com/explodinggradients/ragas"}
 requests = ">=2.30.0,<2.32.0"
@@ -37,6 +39,14 @@ sacrebleu = "^2.5.1"
 spacy = "^3.8.4"
 tavily-python = "^0.5.1"
 unstructured = {extras = ["md"], version = "^0.16.25"}
+llama-index-multi-modal-llms-openai = "^0.5.0"
+llama-index-vector-stores-qdrant = "^0.4.3"
+qdrant-client = "^1.13.3"
+regex = "^2024.11.6"
+scikit-image = "^0.25.2"
+tqdm = "^4.67.1"
+wikipedia = "^1.4.0"
+llama-index-embeddings-clip = "^0.3.1"
 
 
 [tool.poetry.group.dev.dependencies]
