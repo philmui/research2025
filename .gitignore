@@ -213,3 +213,5 @@ local/
 
 **/qdrant_storage
 **/qdrant_storage/**
+04-evaluations/data/samples
+05-image-rag/data/samples
