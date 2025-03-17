@@ -192,3 +192,24 @@ local/
 **/storage/**
 **/logs/**
 04-evaluations/data/samples
+
+# ignore images & videos
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.heic
+*.heif
+*.mov
+*.mp4
+*.mp3
+*.wav
+*.avi
+*.mkv
+*.flv
+*.wmv
+*.webm
+
+**/qdrant_storage
+**/qdrant_storage/**

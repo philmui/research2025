@@ -22,6 +22,7 @@ jupyter = "^1.1.1"
 langchain-community = "^0.3.19"
 llama-index-tools-mcp = "^0.1.0"
 llama-index-core = "^0.12.18"
+llama-index-embeddings-clip = "^0.3.1"
 llama-index-llms-ollama = "^0.5.1"
 llama-index-llms-openai = "^0.3.18"
 llama-index-llms-openrouter = "^0.3.1"
@@ -46,7 +47,6 @@ regex = "^2024.11.6"
 scikit-image = "^0.25.2"
 tqdm = "^4.67.1"
 wikipedia = "^1.4.0"
-llama-index-embeddings-clip = "^0.3.1"
 
 
 [tool.poetry.group.dev.dependencies]
