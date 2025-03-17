@@ -191,7 +191,6 @@ local/
 
 **/storage/**
 **/logs/**
-04-evaluations/data/samples
 
 # ignore images & videos
 *.png
@@ -213,5 +212,3 @@ local/
 
 **/qdrant_storage
 **/qdrant_storage/**
-04-evaluations/data/samples
-05-image-rag/data/samples
