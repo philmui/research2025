@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "advanced-rag"
+version = "0.1.0"
+description = ""
+authors = ["Phil Mui <pmui@salesforce.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+llama-index-embeddings-openai = "^0.3.1"
+llama-index-experimental = "^0.5.4"
+llama-index-llms-openai = "^0.3.26"
+llama-index-readers-file = "^0.4.6"
+llama-index-vector-stores-qdrant = "^0.5.0"
+llama-parse = "^0.6.4.post1"
+loguru = "^0.7.3"
+pdfplumber = "^0.11.5"
+python-dotenv = "^1.0.1"
+pymupdf = "^1.25.4"
+unstructured = {extras = ["inference", "local-inference"], version = "^0.17.2"}
+llama-index-agent-openai = "^0.4.6"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

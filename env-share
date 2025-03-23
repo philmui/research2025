@@ -1,0 +1,37 @@
+DEEPSEEK_URL_BASE=https://api.deepseek.com/v1
+DEEPSEEK_API_KEY=<get from deepseek>
+
+OPENROUTER_URL_BASE=https://openrouter.ai/api/v1
+OPENROUTER_API_KEY=<get from openrouter>
+
+OPENAI_API_KEY=sk-proj-<get from openai>
+OPENAI_ORG_ID=org-<get from openai>
+
+IPINFO_API_TOKEN=<get from ipinfo>
+GOOGLE_API_KEY=<get from google>
+LLAMA_CLOUD_API_KEY=<get from llama cloud>
+
+# ArcGIS
+# URL: https://developers.arcgis.com/api-keys/
+ARCGIS_API_KEY=<get from arcgis>
+ARCGIS_CLIENT_ID=<get from arcgis>
+ARCGIS_CLIENT_SECRET=<get from arcgis>
+ARCGIS_TEMPORARY_TOKEN=<get from arcgis>
+
+HUGGINGFACEHUB_API_TOKEN=<get from huggingface>
+BRAVE_API_KEY=<get from brave>
+SPIDER_API_KEY=<get from spider>
+RAPID_API_KEY=<get from rapid>
+APIFY_API_KEY=<get from apify>
+TAVILY_API_KEY=<get from tavily>
+
+RAGAS_APP_TOKEN=<get from ragas>
+PHOENIX_API_KEY = <get from phoenix>
+PHOENIX_ENDPOINT = "https://app.phoenix.arize.com/v1/traces"
+PHOENIX_CLIENT_HEADERS = "api_key=${PHOENIX_API_KEY}"
+OTEL_EXPORTER_OTLP_HEADERS = "api_key=${PHOENIX_API_KEY}"
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT = "https://app.phoenix.arize.com"
+
+QDRANT_LOCAL_URL="http://localhost:6333"
+QDRANT_HOSTED_URL="https://94dd78f2-8663-4bdf-80e0-db8f174f619b.us-east4-0.gcp.cloud.qdrant.io"
+QDRANT_API_KEY=PM4CDFLF-sfvaM-5OJEDSYGrFM_cjtHkdtDojNLyxuj1f5GWYi1exQ
