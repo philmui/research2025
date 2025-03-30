@@ -33,8 +33,6 @@ OTEL_EXPORTER_OTLP_HEADERS = "api_key=${PHOENIX_API_KEY}"
 OTEL_EXPORTER_OTLP_TRACES_ENDPOINT = "https://app.phoenix.arize.com"
 
 #QDRANT_LOCAL_URL="http://localhost:6333"
-#QDRANT_HOSTED_URL="https://94dd78f2-8663-4bdf-80e0-db8f174f619b.us-east4-0.gcp.cloud.qdrant.io"
-#QDRANT_API_KEY=PM4CDFLF-sfvaM-5OJEDSYGrFM_cjtHkdtDojNLyxuj1f5GWYi1exQ
 QDRANT_HOSTED_URL="https://17789eaf-6c57-43a2-a39e-0f3d0f2271da.us-west-1-0.aws.cloud.qdrant.io"
 QDRANT_API_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.aJSiOIgGpPE1Mn_g1y0DdZdsitk7PyfkvV-DEc8TA2I"
 
