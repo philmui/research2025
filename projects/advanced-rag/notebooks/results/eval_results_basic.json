@@ -1,0 +1,92 @@
+{
+    "single_hop_token": [
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": NaN,
+            "context_precision": NaN,
+            "context_recall": NaN,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        },
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": NaN,
+            "context_precision": NaN,
+            "context_recall": 0.75,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        }
+    ],
+    "single_hop_sentence": [
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": 0.9531537734388006,
+            "context_precision": NaN,
+            "context_recall": 0.5,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        },
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": 0.9303846262377481,
+            "context_precision": NaN,
+            "context_recall": NaN,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        }
+    ],
+    "single_hop_markdown": [
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": NaN,
+            "context_precision": NaN,
+            "context_recall": 0.5,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        },
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": NaN,
+            "context_precision": NaN,
+            "context_recall": NaN,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        }
+    ],
+    "single_hop_markdown_element": [
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": 0.7964629951135446,
+            "context_precision": 0.99999999995,
+            "context_recall": 1.0,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        },
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": 0.9303846262377481,
+            "context_precision": NaN,
+            "context_recall": NaN,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        }
+    ],
+    "single_hop_semantic": [
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": 0.7964620907298317,
+            "context_precision": NaN,
+            "context_recall": NaN,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        },
+        {
+            "answer_correctness": NaN,
+            "answer_relevancy": 0.9303846262377481,
+            "context_precision": NaN,
+            "context_recall": 1.0,
+            "faithfulness": NaN,
+            "factual_correctness(mode=f1)": NaN
+        }
+    ]
+}

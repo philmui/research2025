@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "advanced-rag"
+version = "0.1.0"
+description = ""
+authors = ["Theodore Mui <theodoremui@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "<3.13,>=3.10"
+
+python-dotenv = "^1.1.0"
+llama-index-core = "^0.12.28"
+llama-cloud-services = "^0.6.9"
+ragas = "^0.2.14"
+llama-index-llms-openai = "^0.3.30"
+llama-index-llms-ollama = "^0.5.4"
+llama-index-embeddings-ollama = "^0.6.0"
+llama-index-embeddings-openai = "^0.3.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
