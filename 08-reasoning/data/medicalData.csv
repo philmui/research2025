@@ -1,0 +1,11 @@
+Patient ID,Date of Birth,Gender,Medical History,Current Medications,Allergies,Lab Results (Glucose mg/dL),Diagnoses,Treatment Plan,Is Valid,Issue
+P101,1965-04-12,F,Hypertension,Lisinopril,None,140,Hypertension,Adjust diet and continue medication,True,
+P202,1978-09-05,M,Osteoarthritis,Lisinopril,Lisinopril,100,Osteoarthritis,Recommend physical therapy,False,Prescribed Lisinopril despite known allergy
+P303,1985-03-22,F,Diabetes Type 2,None,None,180,Diabetes Type 2,Advise lifestyle modification,False,Diabetic patient not prescribed diabetes medication
+P404,1992-11-03,M,Diabetes Type 2,Insulin,None,95,Diabetes Type 2,Adjust insulin dosage,False,Lab glucose level normal despite diabetes diagnosis
+P505,2050-01-01,F,Hyperlipidemia,Atorvastatin,None,210,Hyperlipidemia,Continue Atorvastatin,False,Date of birth is in the future
+P606,2001-06-15,M,Asthma,Albuterol,Pollen,80,Asthma,Use inhaler as needed,True,
+P707,1988-12-30,F,Migraines,Ibuprofen,Ibuprofen,105,Migraine,Recommend Ibuprofen alternatives,False,Prescribed Ibuprofen despite known allergy
+P808,1960-08-20,M,Hypertension,None,None,130,Hypertension,Advise lifestyle changes and medication review,False,Hypertensive patient not prescribed any medication
+P909,1970-05-20,F,None,None,None,250,Healthy,No treatment,False,High glucose level does not match a 'Healthy' diagnosis
+P010,1995-02-28,M,Hyperlipidemia,Atorvastatin,None,190,Hyperlipidemia,Continue current regimen,True,
