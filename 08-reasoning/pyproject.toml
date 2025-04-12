@@ -1,20 +1,12 @@
 [project]
-name = "bioreasoning"
+name = "agenttools"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "biomcp-python>=0.1.0",
-    "ipykernel>=6.29.5",
-    "ipywidgets>=8.1.6",
-    "llama-index-core>=0.12.30",
-    "llama-index-embeddings-openai>=0.3.1",
-    "llama-index-llms-openai>=0.3.33",
-    "openai>=1.72.0",
-    "pandas>=2.2.3",
-    "scikit-learn>=1.6.1",
+    "mcp[cli]>=1.6.0",
+    "openai-agents>=0.0.9",
+    "python-dotenv>=1.1.0",
+    "streamlit>=1.44.1",
 ]
-
-[tool.uv.workspace]
-

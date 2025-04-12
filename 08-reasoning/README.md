@@ -1,34 +1,28 @@
-# Biomedical Reasoning
+# Thinking Agents
 
-Project to explore biomedical reasoning.
+We will explore 2 types of thinking:
+
+1.  System 1 Thinking (primarily based on direct LLM invocations)
+2.  System 2 Thinking (based on step-by-step, more deliberate orchestration of thinking)
+
+To install `uv` on a Mac / Linux:
+
+```mac or linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+For a Windows machine:
+```
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
 
 
-## Installation
+Before you run the code, make sure that you have a `.env` file at the toplevel with a `OPENAI_API_KEY` 
+
+To invoke our thinking agent with a nice UI, type:
 
 ```
-git clone https://github.com/ASDRPScholars/bioagents
 uv sync
 source .venv/bin/activate
-```
-
-
-## References
-
-
-Junying Chen and Zhenyang Cai and Ke Ji and Xidong Wang and Wanlong Liu and Rongsheng Wang and Jianye Hou and Benyou Wang (2025)  HuatuoGPT-o1, Towards Medical Complex Reasoning with LLMs. arXiv:2412.18925 [link](https://arxiv.org/abs/2412.18925) [dataset](https://huggingface.co/datasets/FreedomIntelligence/medical-o1-reasoning-SFT)
-
-
-Juncheng Wu, Wenlong Deng, Xingxuan Li, Sheng Liu, Taomian Mi, Yifan Peng, Ziyang Xu, Yi Liu, Hyunjin Cho, Chang-In Choi, Yihan Cao, Hui Ren, Xiang Li, Xiaoxiao Li, Yuyin Zhou (2025) MedReason: Eliciting Factual Medical Reasoning Steps in LLMs via Knowledge Graphs.  	arXiv:2504.00993, April 1, 2025. [link](https://arxiv.org/abs/2504.00993)
-
-
-```
-@misc{chen2024huatuogpto1medicalcomplexreasoning,
-      title={HuatuoGPT-o1, Towards Medical Complex Reasoning with LLMs}, 
-      author={Junying Chen and Zhenyang Cai and Ke Ji and Xidong Wang and Wanlong Liu and Rongsheng Wang and Jianye Hou and Benyou Wang},
-      year={2024},
-      eprint={2412.18925},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2412.18925}, 
-}
+streamlit run thinking_agent.py
 ```
