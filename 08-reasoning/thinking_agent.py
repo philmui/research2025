@@ -7,21 +7,29 @@ import streamlit as st
 from openai import OpenAI
 import time
 
-from bioagents.webagent import ReflexiveAgent
+from bioagents.webagent import ThinkingAgent
+from bioagents.base import DEFAULT_THINKING_MODEL
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-DEFAULT_MODEL = "gpt-4o-mini"
+# Initialize the ReflexiveAgent as a singleton in session state
+if "thinking_agent" not in st.session_state:
+    st.session_state.thinking_agent = ThinkingAgent()
+    print("Initialized ReflexiveAgent singleton")
+
+
+#--------------------------------------------------
+# Sidebar setup
+#--------------------------------------------------
 
 MODEL_DESCRIPTIONS = {
-    "gpt-4o-mini": "gpt-4o-mini (Fast)",
-    "gpt-4o": "gpt-4o (Capable)",
-    "o3-mini": "o3-mini (Reasoning)",
-    "thinking-agent": "Thinking Agent (Web Search)"
+    "thinking-agent": "Thinking Agent (Reflexive)",
+    "gpt-4.1-nano": "gpt-4.1-nano (Fast)",
+    "gpt-4.1": "gpt-4.1 (Capable)",
+    "o4-mini": "o4-mini (Reasoning)",
 }
 
 # Initialize model selection in session state if not present
 if "agent_choice" not in st.session_state:
-    st.session_state["agent_choice"] = DEFAULT_MODEL
+    st.session_state["agent_choice"] = DEFAULT_THINKING_MODEL
 
 with st.sidebar:
     "[Mui Group @ ASDRP](https://bit.ly/mui-group)"
@@ -29,43 +37,59 @@ with st.sidebar:
     st.divider()
     st.session_state.agent_choice = st.selectbox(
         "Choose Model:",
-        ["gpt-4o-mini", "gpt-4o", "o3-mini", "thinking-agent"],
+        MODEL_DESCRIPTIONS.keys(),
         help="Select the model to use for generating responses",
         format_func=lambda x: MODEL_DESCRIPTIONS[x]
     )
+
+
+#-------------------------------------------------- 
+# Main content
+#--------------------------------------------------
 
 st.title("💬 Agent Reasoning Chatbot")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
+# Display message history with right alignment for user messages
 for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
+    # Handle different styling for user vs assistant messages
+    if msg["role"] == "user":
+        # Create columns for user message - reverse order for right-side avatar
+        cols = st.columns([0.85, 0.15])  # Avatar on right
+        with cols[0]:  # Text column
+            st.markdown(f'<div style="width:100%; text-align:right; padding-right:10px;">{msg["content"]}</div>', unsafe_allow_html=True)
+        with cols[1]:  # Avatar column
+            st.image("https://api.dicebear.com/7.x/bottts/svg?seed=user", width=40)
+    else:
+        # Normal display for assistant messages
+        message = st.chat_message(msg["role"])
+        message.write(msg["content"])
+
+
+#-------------------------------------------------- 
+# Chat input
+#--------------------------------------------------
 
 if prompt := st.chat_input():
-    if not OPENAI_API_KEY:
-        st.info("Please add your OpenAI API key to continue.")
-        st.stop()
-
     start_time = time.time()
-    client = OpenAI(api_key=OPENAI_API_KEY)
     st.session_state.messages.append({"role": "user", "content": prompt})
     
-    # Display user message with right alignment
-    user_message = st.chat_message("user", avatar="🧑")
-    user_message.write(f'<div style="text-align: right;">{prompt}</div>', unsafe_allow_html=True)
+    # Display user message with avatar on right
+    cols = st.columns([0.85, 0.15])  # Avatar on right
+    with cols[0]:  # Text column
+        st.markdown(f'<div style="width:100%; text-align:right; padding-right:10px;">{prompt}</div>', unsafe_allow_html=True)
+    with cols[1]:  # Avatar column
+        st.image("https://api.dicebear.com/7.x/bottts/svg?seed=friend", width=40)
     
     response_text = ""
     if st.session_state.agent_choice == "thinking-agent":
-        agent = ReflexiveAgent()
+        agent = st.session_state.thinking_agent
         response = asyncio.run(agent.run(prompt))
         response_text = response.output
-    
-        if response.citations and len(response.citations) > 0:
-            response_text += "\n__References__:"
-            for citation in response.citations:
-                response_text += f"\n- ({citation.title})[{citation.url}]"
     else:
+        client = OpenAI()
         response = client.chat.completions.create(
             model=st.session_state.agent_choice,
             messages=st.session_state.messages
@@ -78,5 +102,6 @@ if prompt := st.chat_input():
     # Calculate and display response time
     end_time = time.time()
     response_time = end_time - start_time
-    st.markdown(f'<div style="text-align: right; color: #888888; font-size: 0.8em; margin-top: -20px;">Response time: {response_time:.2f}s</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align: right; color: #888888; font-size: 0.8em; margin-top: -20px;">Response time: {response_time:.2f}s</div>', 
+                unsafe_allow_html=True)
     

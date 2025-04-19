@@ -6,7 +6,7 @@ load_dotenv(find_dotenv())
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-4o-mini",
+    model="gpt-4.1-mini",
     tools=[
         {
             "type": "web_search_preview",

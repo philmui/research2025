@@ -42,9 +42,9 @@ class AgentResponse:
     citations: list[Citation]
 
 @dataclass
-class ReflexiveAgent:
+class ThinkingAgent:
     agent: Agent
-    def __init__(self, name: str = "ReflexiveAgent"):
+    def __init__(self, name: str = "ThinkingAgent"):
         self.agent = self.create_agent(name)
 
     def create_agent(self, name: str):
@@ -87,7 +87,7 @@ class ReflexiveAgent:
         )
 
 async def run_agent(query_str: str):
-    agent = ReflexiveAgent()
+    agent = ThinkingAgent()
     
     while query_str != "":
         try:
