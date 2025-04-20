@@ -5,6 +5,8 @@ from agents.tracing import set_tracing_disabled
 from dataclasses import dataclass
 from pydantic import BaseModel
 
+from bioagents.base import DEFAULT_THINKING_MODEL
+
 set_tracing_disabled(disabled=True)
 
 TOOL_AGENT_INSTRUCTIONS = """
@@ -30,6 +32,7 @@ end with a list of references.  Do not use "#" or "##" as level of headings.
 [3] - [Reference 3](https://www.google.com)
 """
 
+
 @dataclass
 class Citation:
     url: str
@@ -51,9 +54,10 @@ class ThinkingAgent:
         tool_agent = Agent(
             name=name, 
             instructions=TOOL_AGENT_INSTRUCTIONS,
+            model=DEFAULT_THINKING_MODEL,
             tools=[
                 WebSearchTool(
-                    search_context_size="low",
+                    search_context_size="high",
                     user_location={
                         "type": "approximate",
                         "country": "US",

@@ -7,15 +7,52 @@ import streamlit as st
 from openai import OpenAI
 import time
 
-from bioagents.webagent import ThinkingAgent
-from bioagents.base import DEFAULT_THINKING_MODEL
+from bioagents.reflexive_agent import ReflexiveAgent
+from bioagents.base import DEFAULT_THINKING_MODEL, AgentResponse
 
-USER_AVATAR = "https://api.dicebear.com/7.x/bottts/svg?seed=friend"
+FRIEND_AVATAR = "https://api.dicebear.com/7.x/bottts/svg?seed=friend"
 
 # Initialize the ReflexiveAgent as a singleton in session state
-if "thinking_agent" not in st.session_state:
-    st.session_state.thinking_agent = ThinkingAgent()
+if "reflexive_agent" not in st.session_state:
+    st.session_state.reflexive_agent = ReflexiveAgent()
     print("Initialized ReflexiveAgent singleton")
+
+
+#--------------------------------------------------
+# Utility functions
+#--------------------------------------------------
+
+def render_evaluation_details(message, judge_data):
+    """Render the evaluation details in a collapsible section"""
+    with message.expander("View Evaluation", expanded=False):
+        # Score with colored background based on value
+        score = judge_data.score
+        score_color = "#5FD068" if score >= 0.7 else "#F7DC6F" if score >= 0.4 else "#FF6B6B"
+        st.markdown(f"<div style='background-color:{score_color}; padding:10px; border-radius:5px;'><b>Score:</b> {score:.2f}</div>", unsafe_allow_html=True)
+        
+        # Critique
+        if hasattr(judge_data, 'critique') and judge_data.critique:
+            st.markdown("#### Critique")
+            st.markdown(judge_data.critique)
+        
+        # Reflection
+        if hasattr(judge_data, 'reflection'):
+            reflection = judge_data.reflection
+            st.markdown("#### Reflection")
+            
+            if hasattr(reflection, 'missing') and reflection.missing:
+                st.markdown("**Missing:**")
+                st.markdown(reflection.missing)
+            
+            if hasattr(reflection, 'superfluous') and reflection.superfluous:
+                st.markdown("**Superfluous:**")
+                st.markdown(reflection.superfluous)
+        
+        # Suggested follow-up queries
+        if hasattr(judge_data, 'subqueries') and judge_data.subqueries:
+            st.markdown("#### Suggested Follow-up Queries")
+            for i, query in enumerate(judge_data.subqueries, 1):
+                st.markdown(f"{i}. {query}")
 
 
 #--------------------------------------------------
@@ -63,7 +100,7 @@ for msg in st.session_state.messages:
         with cols[0]:  # Text column
             st.markdown(f'<div style="width:100%; text-align:right; padding-right:10px;">{msg["content"]}</div>', unsafe_allow_html=True)
         with cols[1]:  # Avatar column
-            st.image(USER_AVATAR, width=40)
+            st.image(FRIEND_AVATAR, width=40)
     else:
         # Normal display for assistant messages
         message = st.chat_message(msg["role"])
@@ -83,13 +120,25 @@ if prompt := st.chat_input():
     with cols[0]:  # Text column
         st.markdown(f'<div style="width:100%; text-align:right; padding-right:10px;">{prompt}</div>', unsafe_allow_html=True)
     with cols[1]:  # Avatar column
-        st.image(USER_AVATAR, width=40)
+        st.image(FRIEND_AVATAR, width=40)
     
+    # Create the assistant message display object once
+    message = st.chat_message("assistant")
     response_text = ""
+    
     if st.session_state.agent_choice == "thinking-agent":
-        agent = st.session_state.thinking_agent
-        response = asyncio.run(agent.run(prompt))
+        agent = st.session_state.reflexive_agent
+        response: AgentResponse = asyncio.run(agent.run(prompt))
         response_text = response.output
+        
+        # Display main response
+        message.write(response_text)
+        
+        # Add collapsible evaluation section if judge response is available
+        judge_response = response.judge_response
+        if judge_response and hasattr(judge_response.final_output, 'score'):
+            judge_data = judge_response.final_output
+            render_evaluation_details(message, judge_data)
     else:
         client = OpenAI()
         response = client.chat.completions.create(
@@ -97,9 +146,10 @@ if prompt := st.chat_input():
             messages=st.session_state.messages
         )
         response_text = response.choices[0].message.content
+        message.write(response_text)
         
+    # Add response to message history
     st.session_state.messages.append({"role": "assistant", "content": response_text})
-    st.chat_message("assistant").write(response_text)
     
     # Calculate and display response time
     end_time = time.time()
