@@ -1,5 +1,5 @@
 #########################################################################
-#  system1_agent.py
+# system1_agent.py
 #
 # A chatbot that uses a system 1 thinking to evaluate responses
 # and provide feedback.
