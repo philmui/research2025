@@ -1,6 +1,16 @@
+#########################################################################
+# base.py
+#
+# A collection of base classes for the bioagents project.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 from dataclasses import dataclass
 from typing import List
 from .schemas import ReflexiveResponse
+
 @dataclass
 class Citation:
     url: str

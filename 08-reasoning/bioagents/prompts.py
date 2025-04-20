@@ -1,3 +1,12 @@
+#########################################################################
+# prompts.py
+#
+# A collection of prompts for the bioagents project.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 from .schemas import ReflexiveResponse
 
 RESPONSE_JUDGE_SYSTEM_PROMPT_TMPL = f"""\

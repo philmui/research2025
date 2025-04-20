@@ -1,3 +1,13 @@
+#########################################################################
+# webagent.py
+#
+# A chatbot that uses a web search tool to find information
+# and provide feedback.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 import asyncio
 from agents import Agent, Runner, RunResult
 from agents.tool import WebSearchTool

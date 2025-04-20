@@ -1,3 +1,13 @@
+#########################################################################
+# system1plus_agent.py
+#
+# A chatbot that uses a system 1+ thinking agent to evaluate responses
+# and provide feedback.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 import time

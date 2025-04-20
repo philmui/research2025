@@ -1,3 +1,12 @@
+#########################################################################
+# schemas.py
+#
+# A collection of schemas for the bioagents project.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 from pydantic import BaseModel, Field
 from typing import List
 

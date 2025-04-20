@@ -1,3 +1,13 @@
+#########################################################################
+# websearch_tool.py
+#
+# A tool that uses a web search tool to find information
+# and provide feedback.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
 

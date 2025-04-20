@@ -1,3 +1,13 @@
+#########################################################################
+# reflexive_agent.py
+#
+# A chatbot that uses a reflexive agent to evaluate responses
+# and provide feedback.
+#
+# Author: Phil Mui
+# Date: 2025-04-19
+#########################################################################
+
 import asyncio
 from agents import Agent, Runner, RunResult, trace, gen_trace_id
 from agents.mcp import MCPServerStdio, MCPServerStdioParams
