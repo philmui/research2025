@@ -2,61 +2,89 @@ from dotenv import load_dotenv, find_dotenv
 import streamlit as st
 from openai import OpenAI
 import os
-
+import asyncio
+from bioagents.models.llms import LLM
+from bioagents.agents.webreasoner import WebReasoningAgent
+from bioagents.agents.base import AgentResponse
 load_dotenv(find_dotenv())
-
-# Set page config
 st.set_page_config(
     page_title="BioReasoning Assistant",
     page_icon="🧬",
     layout="wide"
 )
 
-# Initialize OpenAI client
-client = OpenAI()
+# Initialize LLM client in session state if not already present
+if "llm_client" not in st.session_state:
+    st.session_state.llm_client = LLM(model=LLM.GPT_4_1_MINI)
+if "webreasoner" not in st.session_state:
+    st.session_state.webreasoner = WebReasoningAgent(name="Web Reasoner")
 
-# Sidebar for model selection
+#------------------------------------------------
+# Sidebar for user customizations
+#------------------------------------------------
 with st.sidebar:
     st.title("Settings")
-    model = st.selectbox(
+    st.write("Ask me anything about medicine, genetics, drug design, and clinical trials!")
+
+    model_options = {
+        "GPT-4.1 Mini": LLM.GPT_4_1_MINI,
+        "GPT-4.1 Nano": LLM.GPT_4_1_NANO,
+        "GPT-4.1": LLM.GPT_4_1,
+        "GPT-4o": LLM.GPT_4O
+    }
+    
+    model_selection = st.selectbox(
         "Select LLM Model",
-        ["gpt-4.1-mini", "gpt-4.1-nano", "gpt-4.1", "gpt-4o", ],
-        index=0  # Default to gpt-4.1-mini
+        list(model_options.keys()),
+        index=0  # Default to GPT-4.1 Mini
     )
+    
+    # Update the model in the LLM client when changed
+    model = model_options[model_selection]
+    if st.session_state.llm_client._model != model:
+        st.session_state.llm_client._model = model
 
+#------------------------------------------------
 # Main app interface
+#------------------------------------------------
 st.title("BioReasoning Assistant")
-st.write("Ask me anything about medicine, genetics, drug design, and clinical trials!")
 
-# Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display chat messages
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
+        if message["role"] == "assistant" and "citations" in message and message["citations"]:
+            with st.expander("Citations", expanded=False):
+                for citation in message["citations"]:
+                    st.markdown(f"[{citation.title}]({citation.url})")
+                    if citation.snippet:
+                        st.markdown(f"{citation.snippet}")
+                    st.markdown("---")
 
-# Chat input
-if prompt := st.chat_input("What would you like to know?"):
-    # Add user message to chat history
+if prompt := st.chat_input("How can I help you?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     
-    # Display user message
     with st.chat_message("user"):
         st.write(prompt)
     
-    # Get assistant response
     with st.chat_message("assistant"):
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ]
-        )
-        assistant_response = response.choices[0].message.content
-        st.write(assistant_response)
-    
-    # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+        with st.spinner("Thinking..."):
+            reasoner = st.session_state.webreasoner
+            agent_response: AgentResponse = asyncio.run(reasoner.achat(prompt))
+            st.write(agent_response.response_str)
+            
+            if agent_response.citations:
+                with st.expander("## Citations", expanded=False):
+                    for i, citation in enumerate(agent_response.citations):
+                        st.markdown(f"**{i+1}.**[{citation.title}]({citation.url})")
+
+            st.session_state.messages.append(
+                {
+                    "role": "assistant", 
+                    "content": agent_response.response_str,
+                    "citations": agent_response.citations,
+                    "route": agent_response.route
+                }
+            )
