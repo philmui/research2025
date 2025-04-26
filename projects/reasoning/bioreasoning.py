@@ -4,8 +4,11 @@ from openai import OpenAI
 import os
 import asyncio
 from bioagents.models.llms import LLM
-from bioagents.agents.webreasoner import WebReasoningAgent
 from bioagents.agents.base import AgentResponse
+from bioagents.agents.bioreasoner import BioReasoningAgent
+from bioagents.agents.chitchat_agent import ChitChatAgent
+from bioagents.agents.webreasoner import WebReasoningAgent
+
 load_dotenv(find_dotenv())
 st.set_page_config(
     page_title="BioReasoning Assistant",
@@ -16,8 +19,8 @@ st.set_page_config(
 # Initialize LLM client in session state if not already present
 if "llm_client" not in st.session_state:
     st.session_state.llm_client = LLM(model=LLM.GPT_4_1_MINI)
-if "webreasoner" not in st.session_state:
-    st.session_state.webreasoner = WebReasoningAgent(name="Web Reasoner")
+if "reasoner" not in st.session_state:
+    st.session_state.reasoner = BioReasoningAgent(name="Bio Reasoner")
 
 #------------------------------------------------
 # Sidebar for user customizations
@@ -71,7 +74,7 @@ if prompt := st.chat_input("How can I help you?"):
     
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            reasoner = st.session_state.webreasoner
+            reasoner = st.session_state.reasoner
             agent_response: AgentResponse = asyncio.run(reasoner.achat(prompt))
             st.write(agent_response.response_str)
             
