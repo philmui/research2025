@@ -6,10 +6,6 @@ import asyncio
 from bioagents.models.llms import LLM
 from bioagents.agents.webreasoner import WebReasoningAgent
 from bioagents.agents.base import AgentResponse
-import asyncio
-from bioagents.models.llms import LLM
-from bioagents.agents.webreasoner import WebReasoningAgent
-from bioagents.agents.base import AgentResponse
 load_dotenv(find_dotenv())
 st.set_page_config(
     page_title="BioReasoning Assistant",
@@ -17,15 +13,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# Initialize LLM client in session state if not already present
-if "llm_client" not in st.session_state:
-    st.session_state.llm_client = LLM(model=LLM.GPT_4_1_MINI)
-if "webreasoner" not in st.session_state:
-    st.session_state.webreasoner = WebReasoningAgent(name="Web Reasoner")
-
-#------------------------------------------------
-# Sidebar for user customizations
-#------------------------------------------------
 # Initialize LLM client in session state if not already present
 if "llm_client" not in st.session_state:
     st.session_state.llm_client = LLM(model=LLM.GPT_4_1_MINI)
@@ -47,19 +34,7 @@ with st.sidebar:
     }
     
     model_selection = st.selectbox(
-    st.write("Ask me anything about medicine, genetics, drug design, and clinical trials!")
-
-    model_options = {
-        "GPT-4.1 Mini": LLM.GPT_4_1_MINI,
-        "GPT-4.1 Nano": LLM.GPT_4_1_NANO,
-        "GPT-4.1": LLM.GPT_4_1,
-        "GPT-4o": LLM.GPT_4O
-    }
-    
-    model_selection = st.selectbox(
         "Select LLM Model",
-        list(model_options.keys()),
-        index=0  # Default to GPT-4.1 Mini
         list(model_options.keys()),
         index=0  # Default to GPT-4.1 Mini
     )
@@ -70,15 +45,7 @@ with st.sidebar:
         st.session_state.llm_client._model = model
 
 #------------------------------------------------
-    
-    # Update the model in the LLM client when changed
-    model = model_options[model_selection]
-    if st.session_state.llm_client._model != model:
-        st.session_state.llm_client._model = model
-
-#------------------------------------------------
 # Main app interface
-#------------------------------------------------
 #------------------------------------------------
 st.title("BioReasoning Assistant")
 
@@ -88,6 +55,13 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
+        if message["role"] == "assistant" and "citations" in message and message["citations"]:
+            with st.expander("Citations", expanded=False):
+                for citation in message["citations"]:
+                    st.markdown(f"[{citation.title}]({citation.url})")
+                    if citation.snippet:
+                        st.markdown(f"{citation.snippet}")
+                    st.markdown("---")
 
 if prompt := st.chat_input("How can I help you?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -95,17 +69,16 @@ if prompt := st.chat_input("How can I help you?"):
     with st.chat_message("user"):
         st.write(prompt)
     
-    with st.chat_message("bioreasoner"):
+    with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             reasoner = st.session_state.webreasoner
             agent_response: AgentResponse = asyncio.run(reasoner.achat(prompt))
-            
-            st.markdown(agent_response.response_str)
+            st.write(agent_response.response_str)
             
             if agent_response.citations:
-                with st.expander("Citations", expanded=False):
+                with st.expander("## Citations", expanded=False):
                     for i, citation in enumerate(agent_response.citations):
-                        st.markdown(f"**[{i+1}]** [{citation.title}]({citation.url})")
+                        st.markdown(f"**{i+1}.**[{citation.title}]({citation.url})")
 
             st.session_state.messages.append(
                 {
