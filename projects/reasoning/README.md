@@ -1,15 +1,16 @@
 # Bio Reasoning Project
 
-## Environmental Setup
 
-Before running any program here, we need to do basic lib imports at the top level of this project
+## Environment Setup
+
+Before running any program here, we need to do basic lib imports at the toplevel of this project.
 
 ```
 uv sync
 source .venv/bin/activate
 ```
 
-In order to run the bioagents module, we need to set the following env variables:
+In order to run the `bioagents` module, we need to set the following env variable at the toplevel:
 
 ```
 export PYTHONPATH="`pwd`"

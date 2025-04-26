@@ -6,3 +6,4 @@ class Citation:
     title: str
     snippet: str
     source: str
+    

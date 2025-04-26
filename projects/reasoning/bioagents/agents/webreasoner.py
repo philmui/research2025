@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # webreasoner.py
-# This agent can look up the real time web and the latest information & news about general topics.",
-# This is a "Web Reasoning Agent" that uses the web to answer a user's question.
+# 
+# This agent can lookup real time web and the latest information & news about general topics.
 # 
 # Author: Theodore Mui
 # Date: 2025-04-26
@@ -11,6 +11,7 @@ from agents import (
     Agent, ModelSettings, Runner, Tool,
     trace, gen_trace_id
 )
+from agents.extensions.handoff_prompt import RECOMMENDED_PROMPT_PREFIX
 from agents.tool import WebSearchTool
 from agents.tracing import set_tracing_disabled
 from loguru import logger
@@ -23,7 +24,7 @@ set_tracing_disabled(disabled=True)
 
 class WebReasoningAgent(ReasoningAgent):
     """
-    This agent can look up the real time web and the latest information & news about general topics.
+    This agent can lookup real time web and the latest information & news about general topics.
     """
     def __init__(
         self, name: str, 
@@ -43,7 +44,7 @@ class WebReasoningAgent(ReasoningAgent):
         agent = Agent(
             name=agent_name,
             model=model_name,
-            instructions=self.instructions,
+            instructions=f"{RECOMMENDED_PROMPT_PREFIX}\n{self.instructions}",
             tools=[WebSearchTool(
                 search_context_size="medium"
             )],
@@ -75,3 +76,4 @@ if __name__ == "__main__":
     agent = WebReasoningAgent(name="Web Reasoning Agent")
     response = asyncio.run(agent.achat("What can you tell me about the disease measles?"))
     print(str(response))
+    

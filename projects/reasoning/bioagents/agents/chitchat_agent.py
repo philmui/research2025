@@ -1,28 +1,30 @@
 #------------------------------------------------------------------------------
 # chitchat_agent.py
 # 
-# This is a "Chit Chat Agent" that can answer simple questions and provide
-# a friendly conversational interface.
+# This agent is a friendly conversational assistant that informally chit chats with the user.
 # 
 # Author: Theodore Mui
 # Date: 2025-04-26
 #------------------------------------------------------------------------------
+
 from agents import Agent
-from bioagents.agents.reasoner import ReasoningAgent
+from agents.extensions.handoff_prompt import RECOMMENDED_PROMPT_PREFIX
 from bioagents.models.llms import LLM
+from bioagents.agents.reasoner import ReasoningAgent
 
 class ChitChatAgent(ReasoningAgent):
     """
-    This agent can answer simple questions and provide a friendly conversational interface.
+    This agent is a friendly conversational assistant that informally chit chats with the user.
     """
     def __init__(
         self, name: str, 
         model_name: str=LLM.GPT_4_1_MINI, 
+    ):
         instructions = (
             "You are a friendly conversational assistant but you should be very brief and to the point."
-            "You should not ask the user any questions"
+            "You should AVOID asking the user any question."
         )
-    ):
+
         super().__init__(name, model_name, instructions)
         self._agent = self._create_agent(name, model_name)
 
@@ -30,7 +32,7 @@ class ChitChatAgent(ReasoningAgent):
         agent = Agent(
             name=agent_name,
             model=model_name,
-            instructions=self.instructions,
+            instructions=f"{RECOMMENDED_PROMPT_PREFIX}\n{self.instructions}",
             handoffs=[],
             tools=[],
         )
@@ -41,8 +43,8 @@ class ChitChatAgent(ReasoningAgent):
 #------------------------------------------------
 if __name__ == "__main__":
     import asyncio
-
+    
     agent = ChitChatAgent(name="Chit Chat Agent")
     response = asyncio.run(agent.achat("How are you?"))
     print(str(response))
-
+    

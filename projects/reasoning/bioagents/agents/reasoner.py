@@ -11,6 +11,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 from agents import RunResult
+from loguru import logger
 
 from bioagents.models.citation import Citation
 from bioagents.models.llms import LLM
@@ -54,10 +55,10 @@ class ReasoningAgent:
         )
         
     async def achat(self, query_str: str) -> AgentResponse:
+        logger.info(f"-> {self.name}: {query_str}")
         prompt = (f"You are {self.name}. {self.instructions}\n\n"
                   f"User query: {query_str}")
-        response = await self.llm.achat_completion(prompt)
-
+        response = await self.llm.achat_completion(query_str=prompt)
         return AgentResponse(response, [], "", "")
     
 #------------------------------------------------
@@ -66,6 +67,7 @@ class ReasoningAgent:
 if __name__ == "__main__":
     import asyncio
     
-    agent = ReasoningAgent(name="Reasoning Agent")
+    agent = ReasoningAgent(name="ReasoningAgent")
     response = asyncio.run(agent.achat("What is the capital of the moon?"))
     print(str(response))
+    

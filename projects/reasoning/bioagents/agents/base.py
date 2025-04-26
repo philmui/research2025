@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from bioagents.models.citation import Citation
 from typing import List
+from bioagents.models.citation import Citation
 
 @dataclass
 class AgentResponse:
