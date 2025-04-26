@@ -1,3 +1,14 @@
+#------------------------------------------------------------------------------
+# llms.py
+# 
+# This is an interface class for all LLM models. It provides a common interface
+# for all LLM models.
+# 
+# Author: Theodore Mui
+# Date: 2025-04-26
+#------------------------------------------------------------------------------
+
+
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 

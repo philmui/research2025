@@ -1,3 +1,14 @@
+#------------------------------------------------------------------------------
+# bioreasoning.py
+# 
+# This is the main web app for the BioReasoning Project. It allows users to
+# interact with the BioReasoning Agent and its sub-agents.
+# 
+# Author: Theodore Mui
+# Date: 2025-04-26
+#------------------------------------------------------------------------------
+
+
 from dotenv import load_dotenv, find_dotenv
 import streamlit as st
 from openai import OpenAI
@@ -11,14 +22,14 @@ from bioagents.agents.webreasoner import WebReasoningAgent
 
 load_dotenv(find_dotenv())
 st.set_page_config(
-    page_title="BioReasoning Assistant",
+    page_title="BioReasoning Agent",
     page_icon="🧬",
     layout="wide"
 )
 
 # Initialize LLM client in session state if not already present
 if "llm_client" not in st.session_state:
-    st.session_state.llm_client = LLM(model=LLM.GPT_4_1_MINI)
+    st.session_state.llm_client = LLM(model=LLM.GPT_4_1_NANO)
 if "reasoner" not in st.session_state:
     st.session_state.reasoner = BioReasoningAgent(name="Bio Reasoner")
 
@@ -50,7 +61,7 @@ with st.sidebar:
 #------------------------------------------------
 # Main app interface
 #------------------------------------------------
-st.title("BioReasoning Assistant")
+st.title("BioReasoning Agent")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -72,7 +83,7 @@ if prompt := st.chat_input("How can I help you?"):
     with st.chat_message("user"):
         st.write(prompt)
     
-    with st.chat_message("assistant"):
+    with st.chat_message("agent"):
         with st.spinner("Thinking..."):
             reasoner = st.session_state.reasoner
             agent_response: AgentResponse = asyncio.run(reasoner.achat(prompt))
