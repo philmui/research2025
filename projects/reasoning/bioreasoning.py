@@ -81,7 +81,7 @@ if prompt := st.chat_input("How can I help you?"):
             if agent_response.citations:
                 with st.expander("## Citations", expanded=False):
                     for i, citation in enumerate(agent_response.citations):
-                        st.markdown(f"**{i+1}.**[{citation.title}]({citation.url})")
+                        st.markdown(f"**{i+1}.**  [{citation.title}]({citation.url})")
 
             st.session_state.messages.append(
                 {
