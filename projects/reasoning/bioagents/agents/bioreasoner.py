@@ -32,7 +32,7 @@ def on_handoff(ctx: RunContextWrapper):
 class BioReasoningAgent(ReasoningAgent):
     def __init__(
         self, name: str, 
-        model_name: str=LLM.GPT_4_1_MINI, 
+        model_name: str=LLM.GPT_4_1_NANO, 
     ):
         self.chit_chat_agent = ChitChatAgent(name="Chit Chat Agent")
         self.web_agent = WebReasoningAgent(name="Web Reasoning Agent")
@@ -47,10 +47,10 @@ class BioReasoningAgent(ReasoningAgent):
         super().__init__(name, model_name, instructions)
         self._agent = self._create_agent(name, model_name)
 
-    def _create_agent(self, agent_name: str, model_name: str=LLM.GPT_4_1_MINI):
+    def _create_agent(self, agent_name: str, model_name: str=LLM.GPT_4_1_NANO):
         agent = Agent(
             name=agent_name,
-            # instructions=f"{RECOMMENDED_PROMPT_PREFIX}\n{self.instructions}",
+            instructions=f"{RECOMMENDED_PROMPT_PREFIX}\n{self.instructions}",
             handoffs=[
                 handoff(agent=self.chit_chat_agent._agent, on_handoff=on_handoff),
                 handoff(agent=self.web_agent._agent, on_handoff=on_handoff),

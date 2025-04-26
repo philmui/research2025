@@ -11,7 +11,6 @@ from agents import (
     Agent, ModelSettings, Runner, Tool,
     trace, gen_trace_id
 )
-from agents.extensions.handoff_prompt import RECOMMENDED_PROMPT_PREFIX
 from agents.tool import WebSearchTool
 from agents.tracing import set_tracing_disabled
 from loguru import logger
@@ -22,6 +21,13 @@ from bioagents.agents.reasoner import ReasoningAgent
 from bioagents.agents.base import AgentResponse
 set_tracing_disabled(disabled=True)
 
+WEB_REASONING_INSTRUCTIONS = f"""
+You are an expert about the real time web and the latest information & news about general topics.
+Your response should include relevant inline citations.\n
+Today's date is {datetime.datetime.now().strftime('%Y-%m-%d')}.\n
+Respond in the same language as the question.
+"""
+
 class WebReasoningAgent(ReasoningAgent):
     """
     This agent can lookup real time web and the latest information & news about general topics.
@@ -30,13 +36,7 @@ class WebReasoningAgent(ReasoningAgent):
         self, name: str, 
         model_name: str=LLM.GPT_4_1_MINI, 
     ):
-        self.instructions = (
-            "You are an expert about the real time web and the latest information & news about general topics.\n",
-            "Your response should include relevant inline citations\n"
-            f"Today's date is {datetime.datetime.now().strftime('%Y-%m-%d')}.\n"
-            "Respond in the same language as the question."
-        )
-
+        self.instructions = WEB_REASONING_INSTRUCTIONS
         super().__init__(name, model_name, self.instructions)
         self._agent = self._create_agent(name, model_name)
 
@@ -44,9 +44,9 @@ class WebReasoningAgent(ReasoningAgent):
         agent = Agent(
             name=agent_name,
             model=model_name,
-            instructions=f"{RECOMMENDED_PROMPT_PREFIX}\n{self.instructions}",
+            instructions=self.instructions,
             tools=[WebSearchTool(
-                search_context_size="medium"
+                search_context_size="low"
             )],
             model_settings=ModelSettings(
                 tool_choice="required",
