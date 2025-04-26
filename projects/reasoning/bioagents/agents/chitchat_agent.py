@@ -8,7 +8,6 @@
 #------------------------------------------------------------------------------
 
 from agents import Agent
-from agents.extensions.handoff_prompt import RECOMMENDED_PROMPT_PREFIX
 from bioagents.models.llms import LLM
 from bioagents.agents.reasoner import ReasoningAgent
 
@@ -18,7 +17,7 @@ class ChitChatAgent(ReasoningAgent):
     """
     def __init__(
         self, name: str, 
-        model_name: str=LLM.GPT_4_1_MINI, 
+        model_name: str=LLM.GPT_4_1_NANO, 
     ):
         instructions = (
             "You are a friendly conversational assistant but you should be very brief and to the point."
@@ -28,11 +27,11 @@ class ChitChatAgent(ReasoningAgent):
         super().__init__(name, model_name, instructions)
         self._agent = self._create_agent(name, model_name)
 
-    def _create_agent(self, agent_name: str, model_name: str=LLM.GPT_4_1_MINI):
+    def _create_agent(self, agent_name: str, model_name: str=LLM.GPT_4_1_NANO):
         agent = Agent(
             name=agent_name,
             model=model_name,
-            instructions=f"{RECOMMENDED_PROMPT_PREFIX}\n{self.instructions}",
+            instructions=self.instructions,
             handoffs=[],
             tools=[],
         )
