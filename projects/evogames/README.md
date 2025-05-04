@@ -2,8 +2,6 @@
 
 Theodore Mui <theodoremui@gmail.com>
 
-__Sat May  3 16:26:53 PDT 2025__
-
 A number of key folders:
 
 - data : this is where all game config & outputs go
@@ -50,3 +48,7 @@ Before each checkin, run the following to ensure that all unit test passes
 ```
 pytest
 ```
+
+---
+
+_Sat May  3 16:26:53 PDT 2025_
