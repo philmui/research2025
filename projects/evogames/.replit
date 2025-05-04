@@ -26,9 +26,9 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "gunicorn --bind 0.0.0.0:5000 --reuse-port --reload main:app"
-waitForPort = 5000
+args = "gunicorn --bind 0.0.0.0:8000 --reuse-port --reload main:app"
+waitForPort = 8000
 
 [[ports]]
-localPort = 5000
+localPort = 8000
 externalPort = 80
