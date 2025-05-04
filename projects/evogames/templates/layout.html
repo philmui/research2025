@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvoGames - Mui Lab</title>
+    
+    <!-- Bootstrap CSS (Replit theme) -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-balance-scale me-2"></i>EvoGames - Mui Lab
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-chess me-1"></i>Game Theory Lab</a>
+                    </li>
+                    <!-- Temporarily hidden menu items
+                    <li class="nav-item">
+                        <a class="nav-link" href="/social-dilemmas"><i class="fas fa-users me-1"></i>Social Dilemmas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/real-world-examples"><i class="fas fa-globe me-1"></i>Real-World Examples</a>
+                    </li>
+                    -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-book me-1"></i>Learning Center
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/about"><i class="fas fa-info-circle me-1"></i>About Game Theory</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#pdExplanationModal">
+                                <i class="fas fa-balance-scale me-1"></i>Prisoner's Dilemma</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#tocExplanationModal">
+                                <i class="fas fa-tree me-1"></i>Tragedy of the Commons</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#frpExplanationModal">
+                                <i class="fas fa-handshake me-1"></i>Free Rider Problem</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+                            <i class="fas fa-question-circle me-1"></i>Help
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel"><i class="fas fa-question-circle me-2"></i>Help & Navigation Guide</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Welcome to the EvoGames - Mui Lab!</h4>
+                    <p>This application allows you to explore various game theory concepts and social dilemmas through interactive simulations.</p>
+                    
+                    <h5><i class="fas fa-compass me-2"></i>Navigation</h5>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item bg-transparent"><strong>Game Theory Lab:</strong> Configure and run classic game theory simulations like Prisoner's Dilemma</li>
+                        <li class="list-group-item bg-transparent"><strong>Social Dilemmas:</strong> Explore multi-agent simulations of real-world social phenomena</li>
+                        <li class="list-group-item bg-transparent"><strong>Real-World Examples:</strong> Visualize how social dilemmas manifest in actual global issues</li>
+                        <li class="list-group-item bg-transparent"><strong>Learning Center:</strong> Access educational content about game theory concepts</li>
+                    </ul>
+                    
+                    <h5><i class="fas fa-lightbulb me-2"></i>Tips for Using the Simulator</h5>
+                    <ol>
+                        <li>Hover over elements with <i class="fas fa-info-circle text-info"></i> icons to see helpful tooltips</li>
+                        <li>Start with simple configurations before exploring more complex scenarios</li>
+                        <li>Save interesting configurations to revisit them later</li>
+                        <li>Use step-by-step simulation to observe agent behavior in detail</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Prisoner's Dilemma Explanation Modal -->
+    <div class="modal fade" id="pdExplanationModal" tabindex="-1" aria-labelledby="pdExplanationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pdExplanationModalLabel"><i class="fas fa-balance-scale me-2"></i>Understanding Prisoner's Dilemma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>The Prisoner's Dilemma is a classic game theory scenario that illustrates why two rational individuals might not cooperate, even when it's in their best interest to do so.</p>
+                            
+                            <h5>The Classic Scenario:</h5>
+                            <p>Two suspects are arrested and interrogated separately. Each has two options:</p>
+                            <ul>
+                                <li><strong>Cooperate</strong> with their accomplice by remaining silent</li>
+                                <li><strong>Defect</strong> by betraying their accomplice</li>
+                            </ul>
+                            
+                            <h5>The Payoff Matrix:</h5>
+                            <p>If both remain silent (cooperate), they each get a short sentence (3 years).</p>
+                            <p>If one betrays and the other remains silent, the betrayer goes free (0 years) while the silent one gets a long sentence (5 years).</p>
+                            <p>If both betray each other (defect), they both get a medium sentence (1 year).</p>
+                            
+                            <h5>The Dilemma:</h5>
+                            <p>Regardless of what the other does, each prisoner's rational choice is to defect. However, if both defect, their outcome is worse than if both had cooperated.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">Real-world Examples</div>
+                                <ul class="list-group list-group-item-flush">
+                                    <li class="list-group-item bg-transparent">Nuclear arms races</li>
+                                    <li class="list-group-item bg-transparent">Climate change negotiations</li>
+                                    <li class="list-group-item bg-transparent">Price competition between businesses</li>
+                                    <li class="list-group-item bg-transparent">Sports doping scandals</li>
+                                    <li class="list-group-item bg-transparent">OPEC production agreements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Try Prisoner's Dilemma Simulator</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tragedy of the Commons Explanation Modal -->
+    <div class="modal fade" id="tocExplanationModal" tabindex="-1" aria-labelledby="tocExplanationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tocExplanationModalLabel"><i class="fas fa-tree me-2"></i>Understanding Tragedy of the Commons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>The Tragedy of the Commons is a situation where individual users, acting according to their self-interest, deplete a shared resource through their collective action, contrary to the common good.</p>
+                            
+                            <h5>The Core Concept:</h5>
+                            <p>When individuals have access to a shared, limited resource, each person is incentivized to maximize their own use of the resource. However, if everyone does this, the resource becomes depleted or destroyed, harming everyone's long-term interests.</p>
+                            
+                            <h5>Key Dynamics:</h5>
+                            <ul>
+                                <li><strong>Individual Benefit vs. Collective Cost</strong>: Benefits of exploitation go to individuals, while costs are distributed across all users</li>
+                                <li><strong>Lack of Property Rights</strong>: No individual has ownership, thus no one has incentive to maintain sustainability</li>
+                                <li><strong>Threshold Effects</strong>: Resources can collapse suddenly if pushed beyond regeneration capacity</li>
+                            </ul>
+                            
+                            <h5>Potential Solutions:</h5>
+                            <ul>
+                                <li>Privatization of the resource</li>
+                                <li>Community-based governance</li>
+                                <li>External regulation</li>
+                                <li>Technology to improve resource efficiency</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">Real-world Examples</div>
+                                <ul class="list-group list-group-item-flush">
+                                    <li class="list-group-item bg-transparent">Overfishing in oceans</li>
+                                    <li class="list-group-item bg-transparent">Deforestation</li>
+                                    <li class="list-group-item bg-transparent">Air pollution</li>
+                                    <li class="list-group-item bg-transparent">Water aquifers</li>
+                                    <li class="list-group-item bg-transparent">Public land grazing</li>
+                                    <li class="list-group-item bg-transparent">Traffic congestion</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/social-dilemmas'">Try Commons Simulator</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Free Rider Problem Explanation Modal -->
+    <div class="modal fade" id="frpExplanationModal" tabindex="-1" aria-labelledby="frpExplanationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="frpExplanationModalLabel"><i class="fas fa-handshake me-2"></i>Understanding Free Rider Problem</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>The Free Rider Problem occurs when those who benefit from resources, public goods, or services do not pay for them or under-pay, resulting in either the under-provision of those goods/services or in an overuse/degradation of a common resource.</p>
+                            
+                            <h5>The Core Concept:</h5>
+                            <p>Public goods are non-excludable (hard to prevent people from using them) and non-rivalrous (one person's use doesn't diminish another's). This creates an incentive to "free ride" by enjoying benefits without contributing to costs.</p>
+                            
+                            <h5>Key Dynamics:</h5>
+                            <ul>
+                                <li><strong>Individual Rationality vs. Group Rationality</strong>: What's rational for individuals leads to suboptimal outcomes for the group</li>
+                                <li><strong>Scale Effects</strong>: Free riding tends to increase with group size</li>
+                                <li><strong>Social Norms</strong>: Culture and personal ethics can mitigate free riding</li>
+                            </ul>
+                            
+                            <h5>Potential Solutions:</h5>
+                            <ul>
+                                <li>Taxation and government provision</li>
+                                <li>Exclusion mechanisms (when possible)</li>
+                                <li>Social pressure and reputational incentives</li>
+                                <li>Assurance contracts</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">Real-world Examples</div>
+                                <ul class="list-group list-group-item-flush">
+                                    <li class="list-group-item bg-transparent">Public broadcasting</li>
+                                    <li class="list-group-item bg-transparent">Open-source software</li>
+                                    <li class="list-group-item bg-transparent">Public transit fare evasion</li>
+                                    <li class="list-group-item bg-transparent">Vaccine herd immunity</li>
+                                    <li class="list-group-item bg-transparent">Environmental cleanup</li>
+                                    <li class="list-group-item bg-transparent">Tax avoidance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/social-dilemmas'">Try Free Rider Simulator</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-dark">
+        <div class="container text-center">
+            <span class="text-muted">EvoGames - Mui Lab</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chart-config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/simulation-controller.js') }}"></script>
+    
+    {% block additional_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,368 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-cogs me-2"></i>EvoGames - Mui Lab
+                </h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">
+                    Configure and run multi-agent game theory simulations to explore strategies and outcomes.
+                </p>
+                <p>
+                    This tool allows you to set up simulations with different game types and strategies, 
+                    run them, and analyze the results to understand how different strategies perform.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Configuration Panel -->
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-sliders-h me-2"></i>Configuration
+                </h3>
+            </div>
+            <div class="card-body">
+                <form id="config-form">
+                    <!-- Basic Configuration -->
+                    <div class="mb-3">
+                        <label for="config-name" class="form-label">Configuration Name</label>
+                        <input type="text" class="form-control" id="config-name" placeholder="My Simulation" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="config-description" class="form-label">Description (Optional)</label>
+                        <textarea class="form-control" id="config-description" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="game-type" class="form-label">Game Type</label>
+                        <select class="form-select" id="game-type" required>
+                            <option value="prisoners_dilemma" selected>Prisoner's Dilemma</option>
+                            <option value="ultimatum_game" disabled>Ultimatum Game (Coming Soon)</option>
+                            <option value="game_of_chicken" disabled>Game of Chicken (Coming Soon)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="rounds" class="form-label">Number of Rounds</label>
+                        <input type="number" class="form-control" id="rounds" value="100" min="1" max="1000" required>
+                    </div>
+                    
+                    <!-- Payoff Configuration -->
+                    <div class="mb-3">
+                        <label class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                               title="<strong>Payoff Matrix</strong><br>Configure the points awarded in different scenarios:<br>
+                               <ul>
+                               <li><strong>T (Temptation):</strong> Points for defecting when opponent cooperates</li>
+                               <li><strong>R (Reward):</strong> Points when both cooperate</li>
+                               <li><strong>P (Punishment):</strong> Points when both defect</li>
+                               <li><strong>S (Sucker):</strong> Points for cooperating when opponent defects</li>
+                               </ul>
+                               <p>For a valid Prisoner's Dilemma: T > R > P > S and 2R > T+S</p>">
+                            Payoff Matrix
+                            <i class="fas fa-info-circle text-info ms-1"></i>
+                        </label>
+                        
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row g-3 mb-2">
+                                    <div class="col-6">
+                                        <label for="payoff-t" class="form-label">T (Temptation)</label>
+                                        <input type="number" class="form-control payoff-value" id="payoff-t" value="5" min="0" max="10" step="0.5" 
+                                               data-bs-toggle="tooltip" title="Points for defecting when opponent cooperates">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="payoff-r" class="form-label">R (Reward)</label>
+                                        <input type="number" class="form-control payoff-value" id="payoff-r" value="3" min="0" max="10" step="0.5"
+                                               data-bs-toggle="tooltip" title="Points when both cooperate">
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <label for="payoff-p" class="form-label">P (Punishment)</label>
+                                        <input type="number" class="form-control payoff-value" id="payoff-p" value="1" min="0" max="10" step="0.5"
+                                               data-bs-toggle="tooltip" title="Points when both defect">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="payoff-s" class="form-label">S (Sucker)</label>
+                                        <input type="number" class="form-control payoff-value" id="payoff-s" value="0" min="0" max="10" step="0.5"
+                                               data-bs-toggle="tooltip" title="Points for cooperating when opponent defects">
+                                    </div>
+                                </div>
+                                <div id="payoff-error" class="text-danger mt-2" style="display: none;"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-bordered mb-0">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center">Player 2 Cooperates</th>
+                                                <th class="text-center">Player 2 Defects</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="table-secondary">Player 1 Cooperates</th>
+                                                <td class="text-center" id="payoff-rr">R,R (3,3)</td>
+                                                <td class="text-center" id="payoff-st">S,T (0,5)</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="table-secondary">Player 1 Defects</th>
+                                                <td class="text-center" id="payoff-ts">T,S (5,0)</td>
+                                                <td class="text-center" id="payoff-pp">P,P (1,1)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategy Configuration -->
+                    <div class="mb-3">
+                        <label class="form-label">Strategies</label>
+                        <div class="strategy-container">
+                            {% for strategy in strategies %}
+                            <div class="d-flex align-items-center mb-2">
+                                <label class="form-check-label strategy-label" for="strategy-{{ strategy }}" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="{{ strategy_descriptions[strategy] }}">
+                                    {{ strategy.replace('_', ' ').title() }}
+                                    <i class="fas fa-info-circle text-info ms-1"></i>
+                                </label>
+                                <input type="number" class="form-control form-control-sm ms-auto strategy-count" 
+                                       id="strategy-{{ strategy }}" 
+                                       data-strategy="{{ strategy }}"
+                                       min="0" value="0" style="width: 70px;">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">Total Agents: <span id="total-agents">0</span></small>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary" id="save-config-btn">
+                            <i class="fas fa-save me-2"></i>Save Configuration
+                        </button>
+                        <button type="button" class="btn btn-success" id="run-simulation-btn">
+                            <i class="fas fa-play me-2"></i>Run Simulation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Saved Configurations -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-save me-2"></i>Saved Configurations
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="list-group" id="saved-configs">
+                    {% if configs %}
+                        {% for config in configs %}
+                        <button type="button" class="list-group-item list-group-item-action" 
+                                data-config-id="{{ config.filename }}">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ config.name }}</h5>
+                                <small>{{ config.game_type }}</small>
+                            </div>
+                            <small class="text-muted">Created: {{ config.created }}</small>
+                        </button>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-3">
+                            <i class="fas fa-info-circle mb-2" style="font-size: 2rem;"></i>
+                            <p class="mb-0">No saved configurations yet.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Simulation Results -->
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>Simulation Results
+                    </h3>
+                    <div class="simulation-controls" id="simulation-controls" style="display: none;">
+                        <button class="btn btn-sm btn-primary me-1" id="pause-btn">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger me-1" id="stop-btn">
+                            <i class="fas fa-stop"></i>
+                        </button>
+                        <button class="btn btn-sm btn-success me-1" id="step-btn">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="results-container">
+                    <div id="simulation-status" class="alert alert-info text-center">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Configure and run a simulation to see results.
+                    </div>
+                    
+                    <!-- Round Information -->
+                    <div id="round-info" style="display: none;">
+                        <h4>Round: <span id="current-round">0</span> of <span id="total-rounds">0</span></h4>
+                        <div class="progress mb-3">
+                            <div id="round-progress" class="progress-bar" role="progressbar" style="width: 0%;" 
+                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charts Container -->
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="chart-container">
+                                <div class="chart-title" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                     title="<strong>Agent Scores Over Rounds</strong><br>This chart tracks the cumulative score of each agent throughout the simulation. Each line represents an individual agent, showing how their total score accumulates over multiple rounds. Higher slopes indicate more successful strategies. Look for which strategies consistently outperform others and at what point different strategies diverge in performance.">
+                                    <i class="fas fa-info-circle text-info me-1"></i> Agent Scores Over Rounds
+                                </div>
+                                <canvas id="score-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="chart-container">
+                                <div class="chart-title" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                     title="<strong>Average Score by Strategy</strong><br>This bar chart shows the average score achieved by each strategy type. Higher bars indicate more successful strategies overall. The average is calculated across all agents using the same strategy. This helps identify which strategies are most effective in the current mix of agents and number of rounds.">
+                                    <i class="fas fa-info-circle text-info me-1"></i> Average Score by Strategy
+                                </div>
+                                <canvas id="strategy-performance-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="chart-container">
+                                <div class="chart-title" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                     title="<strong>Overall Cooperation vs Defection</strong><br>This doughnut chart shows the total proportion of cooperative moves (C) versus defective moves (D) across all interactions in the simulation. A higher proportion of cooperation generally indicates more mutually beneficial outcomes for the population as a whole, while more defection indicates a more competitive environment.">
+                                    <i class="fas fa-info-circle text-info me-1"></i> Overall Cooperation vs Defection
+                                </div>
+                                <canvas id="cooperation-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="chart-container">
+                                <div class="chart-title" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                     title="<strong>Strategy Cooperation Rates</strong><br>This radar chart displays the cooperation rate (percentage of cooperative moves) for each strategy. Strategies positioned farther from the center are more cooperative. This helps identify which strategies tend to cooperate more frequently and which are more likely to defect, regardless of their overall success.">
+                                    <i class="fas fa-info-circle text-info me-1"></i> Strategy Cooperation Rates
+                                </div>
+                                <canvas id="interaction-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Detailed Results -->
+                    <div id="detailed-results" style="display: none;">
+                        <h4>Detailed Results</h4>
+                        <div class="info-text mb-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                             title="<strong>Understanding the Results Table</strong><br>
+                             <ul>
+                             <li><strong>Strategy:</strong> The name of the strategy used by the agents</li>
+                             <li><strong>Avg. Score:</strong> The average score achieved by agents using this strategy across all rounds</li>
+                             <li><strong>Cooperation Rate:</strong> The percentage of time agents using this strategy chose to cooperate</li>
+                             <li><strong>Total Interactions:</strong> The total number of interactions involving this strategy</li>
+                             </ul>
+                             <p>Strategies with higher average scores are more successful. The highest scoring strategy is highlighted in green, while the lowest scoring strategy is highlighted in red.</p>">
+                            <i class="fas fa-info-circle text-info me-1"></i>
+                            Hover over table headers for more information about each metric
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th data-bs-toggle="tooltip" data-bs-placement="top" title="The name of the strategy used by the agents">Strategy</th>
+                                        <th data-bs-toggle="tooltip" data-bs-placement="top" title="The average score achieved by agents using this strategy across all rounds">Avg. Score</th>
+                                        <th data-bs-toggle="tooltip" data-bs-placement="top" title="The percentage of time agents using this strategy chose to cooperate (C) rather than defect (D)">Cooperation Rate</th>
+                                        <th data-bs-toggle="tooltip" data-bs-placement="top" title="The total number of interactions involving this strategy">Total Interactions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="results-table-body">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Agent Interactions -->
+        <div class="card mb-4" id="interactions-card" style="display: none;">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-exchange-alt me-2"></i>Recent Interactions
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="info-text mb-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                     title="<strong>Understanding Agent Interactions</strong><br>
+                     This table shows individual interactions between pairs of agents in the most recent round.
+                     <ul>
+                     <li><strong>Agent:</strong> The agent identifier showing which strategy it's using</li>
+                     <li><strong>Move:</strong> 'C' (green) indicates cooperation, 'D' (red) indicates defection</li>
+                     <li><strong>Payoffs:</strong> The scores each agent received from this interaction</li>
+                     </ul>
+                     <p>In the Prisoner's Dilemma, the payoffs are typically:</p>
+                     <ul>
+                     <li>Both cooperate: Both get 3 points (Reward)</li>
+                     <li>Both defect: Both get 1 point (Punishment)</li>
+                     <li>One cooperates, one defects: Cooperator gets 0 points (Sucker), Defector gets 5 points (Temptation)</li>
+                     </ul>">
+                    <i class="fas fa-info-circle text-info me-1"></i>
+                    Table shows agent interactions in the current round (C = Cooperate, D = Defect)
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th data-bs-toggle="tooltip" data-bs-placement="top" title="The first agent in this interaction">Agent 1</th>
+                                <th data-bs-toggle="tooltip" data-bs-placement="top" title="C (green) = Cooperate, D (red) = Defect">Move</th>
+                                <th data-bs-toggle="tooltip" data-bs-placement="top" title="The second agent in this interaction">Agent 2</th>
+                                <th data-bs-toggle="tooltip" data-bs-placement="top" title="C (green) = Cooperate, D (red) = Defect">Move</th>
+                                <th data-bs-toggle="tooltip" data-bs-placement="top" title="The points earned by each agent from this interaction (Agent 1 / Agent 2)">Payoffs</th>
+                            </tr>
+                        </thead>
+                        <tbody id="interactions-table-body">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast for notifications -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="notification-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong class="me-auto" id="toast-title">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-message">
+            <!-- Message content will be inserted here -->
+        </div>
+    </div>
+</div>
+{% endblock %}

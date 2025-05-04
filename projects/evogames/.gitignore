@@ -1,0 +1,6 @@
+data/
+instance/
+__pycache__/
+**/*.pyc
+**/__pycache__/
+instance/simulation.db

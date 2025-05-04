@@ -1,0 +1,259 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-info-circle me-2"></i>About Game Theory Simulation
+                </h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">
+                    This application is designed as an educational tool to help students understand game theory
+                    concepts through interactive simulations.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-question-circle me-2"></i>What is Game Theory?
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    Game theory is the study of mathematical models of strategic interactions among rational agents. 
+                    It has applications in economics, political science, psychology, and biology. Game theory 
+                    provides a framework for analyzing situations where multiple agents make decisions that affect 
+                    each other's outcomes.
+                </p>
+                <p>
+                    The key components of game theory include:
+                </p>
+                <ul>
+                    <li><strong>Players</strong>: The decision-makers in the game</li>
+                    <li><strong>Strategies</strong>: The possible actions available to players</li>
+                    <li><strong>Payoffs</strong>: The rewards or penalties received by players based on their actions</li>
+                    <li><strong>Information</strong>: What players know when making decisions</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-handshake me-2"></i>Prisoner's Dilemma
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    The Prisoner's Dilemma is one of the most famous scenarios in game theory. Two individuals 
+                    are arrested for a crime. Each prisoner is offered the opportunity to betray the other by 
+                    testifying that the other committed the crime.
+                </p>
+                <p>
+                    The possible outcomes are:
+                </p>
+                <ul>
+                    <li>If both prisoners betray each other (defect), both serve 2 years in prison</li>
+                    <li>If one betrays (defects) and the other remains silent (cooperates), the betrayer goes free and the silent prisoner serves 3 years</li>
+                    <li>If both remain silent (cooperate), both serve 1 year in prison</li>
+                </ul>
+                <p>
+                    The dilemma arises because while mutual cooperation yields the best collective outcome, 
+                    rational self-interest leads both players to defect.
+                </p>
+                
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Player 2 Cooperates</th>
+                                <th>Player 2 Defects</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Player 1 Cooperates</th>
+                                <td>Both get R=3<br>(Reward)</td>
+                                <td>P1 gets S=0<br>P2 gets T=5<br>(Sucker, Temptation)</td>
+                            </tr>
+                            <tr>
+                                <th>Player 1 Defects</th>
+                                <td>P1 gets T=5<br>P2 gets S=0<br>(Temptation, Sucker)</td>
+                                <td>Both get P=1<br>(Punishment)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-chess me-2"></i>Strategies
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    In repeated games like the Prisoner's Dilemma, players can adopt various strategies:
+                </p>
+                
+                <div class="accordion" id="strategyAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTitForTat">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapseTitForTat" aria-expanded="false" aria-controls="collapseTitForTat">
+                                Tit-for-Tat
+                            </button>
+                        </h2>
+                        <div id="collapseTitForTat" class="accordion-collapse collapse" aria-labelledby="headingTitForTat" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Cooperate on the first move, then copy your opponent's previous move. This strategy is forgiving but retaliatory.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingAllC">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapseAllC" aria-expanded="false" aria-controls="collapseAllC">
+                                All Cooperate
+                            </button>
+                        </h2>
+                        <div id="collapseAllC" class="accordion-collapse collapse" aria-labelledby="headingAllC" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Always cooperate regardless of what the opponent does. This strategy is vulnerable to exploitation.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingAllD">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapseAllD" aria-expanded="false" aria-controls="collapseAllD">
+                                All Defect
+                            </button>
+                        </h2>
+                        <div id="collapseAllD" class="accordion-collapse collapse" aria-labelledby="headingAllD" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Always defect regardless of what the opponent does. This strategy prevents exploitation but prevents mutual cooperation.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTft2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapseTft2" aria-expanded="false" aria-controls="collapseTft2">
+                                Tit-for-2-Tat
+                            </button>
+                        </h2>
+                        <div id="collapseTft2" class="accordion-collapse collapse" aria-labelledby="headingTft2" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Only defects if the opponent defects twice in a row. More forgiving than Tit-for-Tat.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading2Tft">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapse2Tft" aria-expanded="false" aria-controls="collapse2Tft">
+                                2-Tit-for-Tat
+                            </button>
+                        </h2>
+                        <div id="collapse2Tft" class="accordion-collapse collapse" aria-labelledby="heading2Tft" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Defects twice if the opponent defects once. More retaliatory than Tit-for-Tat.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPavlov">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapsePavlov" aria-expanded="false" aria-controls="collapsePavlov">
+                                Pavlov (Win-Stay, Lose-Shift)
+                            </button>
+                        </h2>
+                        <div id="collapsePavlov" class="accordion-collapse collapse" aria-labelledby="headingPavlov" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                If you got a good outcome, repeat your move. If you got a bad outcome, change your move.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingGrudger">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapseGrudger" aria-expanded="false" aria-controls="collapseGrudger">
+                                Grudger
+                            </button>
+                        </h2>
+                        <div id="collapseGrudger" class="accordion-collapse collapse" aria-labelledby="headingGrudger" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Cooperates until the opponent defects, then always defects thereafter. Unforgiving.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingRandom">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapseRandom" aria-expanded="false" aria-controls="collapseRandom">
+                                Random
+                            </button>
+                        </h2>
+                        <div id="collapseRandom" class="accordion-collapse collapse" aria-labelledby="headingRandom" data-bs-parent="#strategyAccordion">
+                            <div class="accordion-body">
+                                Randomly decides whether to cooperate or defect with equal probability.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-secondary">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-graduation-cap me-2"></i>Educational Use
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    This simulation platform can be used for various educational purposes:
+                </p>
+                <ul>
+                    <li>Understanding the basic concepts of game theory</li>
+                    <li>Exploring how different strategies perform in repeated games</li>
+                    <li>Analyzing how the mix of strategies in a population affects outcomes</li>
+                    <li>Investigating the evolution of cooperation</li>
+                    <li>Demonstrating concepts like Nash equilibrium, Pareto optimality, and social dilemmas</li>
+                </ul>
+                <p>
+                    Students can experiment with different configurations to answer questions like:
+                </p>
+                <ul>
+                    <li>Which strategy performs best in a mixed population?</li>
+                    <li>How does the number of rounds affect strategy performance?</li>
+                    <li>What happens when cooperators face defectors?</li>
+                    <li>How do different initial conditions affect the outcome?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

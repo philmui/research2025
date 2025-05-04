@@ -1,0 +1,98 @@
+/* Custom CSS for EvoGames - Mui Lab */
+
+/* Chart containers */
+.chart-container {
+    position: relative;
+    height: 250px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Chart title with info icon */
+.chart-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+    cursor: help;
+}
+
+/* Make tooltip text larger and more readable */
+.tooltip-inner {
+    max-width: 350px;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Strategy label styling */
+.strategy-label {
+    text-transform: capitalize;
+    flex-grow: 1;
+}
+
+/* Toast position */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+}
+
+/* Highlight for current round in interactions table */
+.current-interaction {
+    background-color: rgba(var(--bs-info-rgb), 0.2) !important;
+}
+
+/* Cooperation/Defection cells */
+.move-cell {
+    font-weight: bold;
+    text-align: center;
+    width: 60px;
+}
+
+.cooperate {
+    color: var(--bs-success);
+}
+
+.defect {
+    color: var(--bs-danger);
+}
+
+/* Results table highlights */
+.top-score {
+    background-color: rgba(var(--bs-success-rgb), 0.2) !important;
+}
+
+.bottom-score {
+    background-color: rgba(var(--bs-danger-rgb), 0.2) !important;
+}
+
+/* Simulation controls */
+.simulation-controls {
+    display: flex;
+    align-items: center;
+}
+
+/* Make form elements in dark theme more visible */
+.form-control, .form-select {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+    border-color: var(--bs-secondary);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 200px;
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+    }
+}

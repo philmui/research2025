@@ -1,0 +1,725 @@
+{% extends 'layout.html' %}
+
+{% block title %}Social Dilemmas | EvoGames - Mui Lab{% endblock %}
+
+{% block content %}
+<!-- Toast notification for alerts -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+    <div id="notification-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong class="me-auto" id="toast-title">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-message">
+            This is a notification message.
+        </div>
+    </div>
+</div>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar with Explanations -->
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Social Dilemmas
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead">
+                        Social dilemmas occur when individual interests conflict with collective interests.
+                    </p>
+                    
+                    <div class="accordion" id="dilemmas-accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="tragedy-commons-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tragedy-commons-content" aria-expanded="true" aria-controls="tragedy-commons-content">
+                                    Tragedy of the Commons
+                                </button>
+                            </h2>
+                            <div id="tragedy-commons-content" class="accordion-collapse collapse show" aria-labelledby="tragedy-commons-header">
+                                <div class="accordion-body">
+                                    <p>A situation where individual users, acting independently according to their self-interest, behave contrary to the common good by depleting or spoiling a shared resource through their collective action.</p>
+                                    
+                                    <h6>Real-world examples:</h6>
+                                    <ul>
+                                        <li>Overfishing in oceans</li>
+                                        <li>Climate change and carbon emissions</li>
+                                        <li>Overgrazing on public lands</li>
+                                        <li>Water shortages in drought conditions</li>
+                                    </ul>
+                                    
+                                    <p><strong>Key Dynamics:</strong> Individual benefit (short-term) vs. collective harm (long-term). The more individuals exploit the resource, the faster it depletes for everyone.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="free-rider-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#free-rider-content" aria-expanded="false" aria-controls="free-rider-content">
+                                    Free Rider Problem
+                                </button>
+                            </h2>
+                            <div id="free-rider-content" class="accordion-collapse collapse" aria-labelledby="free-rider-header">
+                                <div class="accordion-body">
+                                    <p>Occurs when those who benefit from resources, goods, or services do not pay for them, which results in an under-provision of those goods or services.</p>
+                                    
+                                    <h6>Real-world examples:</h6>
+                                    <ul>
+                                        <li>Public broadcasting supported by voluntary contributions</li>
+                                        <li>Public transportation fare evasion</li>
+                                        <li>Group projects where some members don't contribute</li>
+                                        <li>Tax avoidance while using public services</li>
+                                    </ul>
+                                    
+                                    <p><strong>Key Dynamics:</strong> Individuals receive benefits without contributing their fair share. As more people become free riders, the system becomes unsustainable.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="public-goods-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#public-goods-content" aria-expanded="false" aria-controls="public-goods-content">
+                                    Public Goods Dilemma
+                                </button>
+                            </h2>
+                            <div id="public-goods-content" class="accordion-collapse collapse" aria-labelledby="public-goods-header">
+                                <div class="accordion-body">
+                                    <p>A type of social dilemma where everyone would benefit from a certain good or service, but the cost of producing it makes it unattractive for any individual to pay for it alone.</p>
+                                    
+                                    <h6>Real-world examples:</h6>
+                                    <ul>
+                                        <li>National defense and security</li>
+                                        <li>Lighthouse construction and operation</li>
+                                        <li>Clean air regulations</li>
+                                        <li>Wikipedia and open-source software</li>
+                                    </ul>
+                                    
+                                    <p><strong>Key Dynamics:</strong> Individual contribution has minimal personal benefit but significant collective benefit. Rational individuals might withhold contribution while hoping others will provide.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="voting-paradox-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#voting-paradox-content" aria-expanded="false" aria-controls="voting-paradox-content">
+                                    Voting Paradox
+                                </button>
+                            </h2>
+                            <div id="voting-paradox-content" class="accordion-collapse collapse" aria-labelledby="voting-paradox-header">
+                                <div class="accordion-body">
+                                    <p>Demonstrates how collective preferences can be cyclic, even if individual preferences are not. This creates situations where democratic voting might lead to inconsistent outcomes.</p>
+                                    
+                                    <h6>Real-world examples:</h6>
+                                    <ul>
+                                        <li>Electoral systems with three or more strong candidates</li>
+                                        <li>Committee decisions on multiple interrelated issues</li>
+                                        <li>Ranked-choice voting outcomes</li>
+                                        <li>Multiple referendum options on the same topic</li>
+                                    </ul>
+                                    
+                                    <p><strong>Key Dynamics:</strong> Group A prefers option X over Y, Group B prefers Y over Z, and Group C prefers Z over X, creating an endless cycle with no clear winner.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="social-trust-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#social-trust-content" aria-expanded="false" aria-controls="social-trust-content">
+                                    Social Trust Dilemma
+                                </button>
+                            </h2>
+                            <div id="social-trust-content" class="accordion-collapse collapse" aria-labelledby="social-trust-header">
+                                <div class="accordion-body">
+                                    <p>The conflict between short-term personal gains achieved through untrustworthy behavior versus the long-term collective benefits of maintaining trust in a society.</p>
+                                    
+                                    <h6>Real-world examples:</h6>
+                                    <ul>
+                                        <li>Business contracts and agreements</li>
+                                        <li>Online marketplace transactions</li>
+                                        <li>Journalism and information sharing</li>
+                                        <li>Social credit systems</li>
+                                    </ul>
+                                    
+                                    <p><strong>Key Dynamics:</strong> Trust reduces transaction costs and enables cooperation, but individuals may benefit from betraying trust. As trust erodes, society becomes less efficient and cooperative.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Simulation Configuration -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header bg-secondary">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-cogs me-2"></i>Social Dilemma Simulation
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form id="social-dilemma-form" action="/api/social-dilemma/simulate" method="POST">
+                        <div class="mb-3">
+                            <label for="dilemma-name" class="form-label">Configuration Name</label>
+                            <input type="text" class="form-control" id="dilemma-name" name="dilemma-name"
+                                   placeholder="My Social Dilemma Simulation" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="dilemma-description" class="form-label">Description (Optional)</label>
+                            <textarea class="form-control" id="dilemma-description" name="dilemma-description" rows="2"
+                                     placeholder="Brief description of what you're studying"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="dilemma-type" class="form-label">Dilemma Type</label>
+                            <select class="form-select" id="dilemma-type" name="dilemma-type" required>
+                                <option value="tragedy_commons">Tragedy of the Commons</option>
+                                <option value="free_rider">Free Rider Problem</option>
+                                <option value="public_goods">Public Goods Dilemma</option>
+                                <option value="voting_paradox" disabled>Voting Paradox (Coming Soon)</option>
+                                <option value="social_trust" disabled>Social Trust Dilemma (Coming Soon)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="dilemma-rounds" class="form-label">Number of Rounds</label>
+                            <input type="number" class="form-control" id="dilemma-rounds" name="dilemma-rounds" value="50" min="1" max="500" required>
+                        </div>
+                        
+                        <!-- Tragedy of the Commons Config -->
+                        <div id="tragedy-commons-config" class="dilemma-config">
+                            <h5 class="mt-4">Tragedy of the Commons Parameters</h5>
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="tc-resource-size" class="form-label">Initial Resource Size</label>
+                                        <input type="number" class="form-control" id="tc-resource-size" value="1000" min="100" max="10000">
+                                        <div class="form-text">Total units of shared resource available at start</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="tc-regen-rate" class="form-label">Resource Regeneration Rate</label>
+                                        <input type="number" class="form-control" id="tc-regen-rate" value="5" min="0" max="100" step="0.5">
+                                        <div class="form-text">Percentage of resource that regenerates each round</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="tc-harvest-limit" class="form-label">Sustainable Harvest Limit</label>
+                                        <input type="number" class="form-control" id="tc-harvest-limit" value="30" min="1" max="100">
+                                        <div class="form-text">Recommended maximum harvest per agent per round</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h5>Agent Strategies</h5>
+                            <div class="mb-3">
+                                <div class="strategy-container">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="tc-sustainable" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Sustainable Harvester</strong><br>Only takes what can be regenerated, preserving the commons for long-term use. Will adjust harvest based on resource health.">
+                                            Sustainable Harvesters
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="tc-sustainable" 
+                                               data-strategy="sustainable"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="tc-greedy" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Greedy Harvester</strong><br>Takes maximum possible resources each round to maximize short-term gain, regardless of sustainability concerns.">
+                                            Greedy Harvesters
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="tc-greedy" 
+                                               data-strategy="greedy"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="tc-adaptive" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Adaptive Harvester</strong><br>Begins moderately and adjusts behavior based on what others do and resource health. May become more greedy or more sustainable.">
+                                            Adaptive Harvesters
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="tc-adaptive" 
+                                               data-strategy="adaptive"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="tc-fair" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Fair Share Harvester</strong><br>Calculates an equal division of sustainable yield and takes exactly that amount, regardless of what others do.">
+                                            Fair Share Harvesters
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="tc-fair" 
+                                               data-strategy="fair_share"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <small class="text-muted">Total Agents: <span id="dilemma-total-agents">20</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Free Rider Config -->
+                        <div id="free-rider-config" class="dilemma-config" style="display: none;">
+                            <h5 class="mt-4">Free Rider Problem Parameters</h5>
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="fr-project-cost" class="form-label">Total Project Cost</label>
+                                        <input type="number" class="form-control" id="fr-project-cost" value="1000" min="100" max="10000">
+                                        <div class="form-text">Cost to create the public good/project</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="fr-contribution-reward" class="form-label">Individual Benefit Multiplier</label>
+                                        <input type="number" class="form-control" id="fr-contribution-reward" value="2" min="1" max="10" step="0.1">
+                                        <div class="form-text">How much each agent benefits from the completed project relative to their contribution</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="fr-threshold" class="form-label">Success Threshold</label>
+                                        <input type="number" class="form-control" id="fr-threshold" value="75" min="1" max="100">
+                                        <div class="form-text">Percentage of total cost needed for project to succeed</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h5>Agent Strategies</h5>
+                            <div class="mb-3">
+                                <div class="strategy-container">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="fr-contributor" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Consistent Contributor</strong><br>Always contributes their fair share to the public good, regardless of what others do.">
+                                            Consistent Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="fr-contributor" 
+                                               data-strategy="contributor"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="fr-free-rider" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Free Rider</strong><br>Contributes nothing but still benefits if the public good is created by others' contributions.">
+                                            Free Riders
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="fr-free-rider" 
+                                               data-strategy="free_rider"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="fr-partial" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Partial Contributor</strong><br>Contributes some amount less than their fair share, hoping others will make up the difference.">
+                                            Partial Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="fr-partial" 
+                                               data-strategy="partial"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="fr-conditional" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Conditional Contributor</strong><br>Contributes based on what others contributed in previous rounds. Will match the average contribution.">
+                                            Conditional Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="fr-conditional" 
+                                               data-strategy="conditional"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <small class="text-muted">Total Agents: <span id="fr-total-agents">20</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Public Goods Config -->
+                        <div id="public-goods-config" class="dilemma-config" style="display: none;">
+                            <h5 class="mt-4">Public Goods Dilemma Parameters</h5>
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="pg-endowment" class="form-label">Individual Endowment</label>
+                                        <input type="number" class="form-control" id="pg-endowment" value="50" min="10" max="1000">
+                                        <div class="form-text">Starting resources each agent receives per round</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="pg-multiplier" class="form-label">Public Good Multiplier</label>
+                                        <input type="number" class="form-control" id="pg-multiplier" value="2" min="1" max="5" step="0.1">
+                                        <div class="form-text">Factor by which public pool is multiplied before distribution</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="pg-distribution" class="form-label">Distribution Method</label>
+                                        <select class="form-select" id="pg-distribution">
+                                            <option value="equal">Equal Distribution</option>
+                                            <option value="proportional">Proportional to Contribution</option>
+                                        </select>
+                                        <div class="form-text">How the public good is distributed among agents</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h5>Agent Strategies</h5>
+                            <div class="mb-3">
+                                <div class="strategy-container">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="pg-full" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Full Contributor</strong><br>Contributes their entire endowment to the public good.">
+                                            Full Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="pg-full" 
+                                               data-strategy="full"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="pg-zero" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Zero Contributor</strong><br>Contributes nothing to the public good, keeps entire endowment.">
+                                            Zero Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="pg-zero" 
+                                               data-strategy="zero"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="pg-random" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Random Contributor</strong><br>Contributes a random percentage of their endowment each round.">
+                                            Random Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="pg-random" 
+                                               data-strategy="random"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label class="form-check-label strategy-label" for="pg-matching" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" 
+                                               title="<strong>Matching Contributor</strong><br>Contributes based on the average contribution of others in the previous round.">
+                                            Matching Contributors
+                                            <i class="fas fa-info-circle text-info ms-1"></i>
+                                        </label>
+                                        <input type="number" class="form-control form-control-sm ms-auto social-strategy-count" 
+                                               id="pg-matching" 
+                                               data-strategy="matching"
+                                               min="0" value="5" style="width: 70px;">
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <small class="text-muted">Total Agents: <span id="pg-total-agents">20</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Add hidden field to store JSON configuration -->
+                        <input type="hidden" id="config-json" name="config" value="">
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="button" class="btn btn-primary" id="save-dilemma-btn">
+                                <i class="fas fa-save me-2"></i>Save Configuration
+                            </button>
+                            <button type="submit" class="btn btn-success" id="run-dilemma-btn" onclick="prepareFormSubmission(event)">
+                                <i class="fas fa-play me-2"></i>Run Simulation
+                            </button>
+                        </div>
+                        
+                        <script>
+                        // Function to prepare the form for submission
+                        function prepareFormSubmission(event) {
+                            try {
+                                // Prevent the default submit until we prepare the data
+                                event.preventDefault();
+                                
+                                // Basic validation first
+                                const name = document.getElementById('dilemma-name').value.trim();
+                                if (!name) {
+                                    alert('Please provide a configuration name');
+                                    return;
+                                }
+                                
+                                // Get current dilemma type
+                                const dilemmaType = document.getElementById('dilemma-type').value;
+                                const rounds = parseInt(document.getElementById('dilemma-rounds').value);
+                                
+                                // Check agent count in the selected dilemma type
+                                let totalAgents = 0;
+                                const strategyInputs = document.querySelectorAll(`#${dilemmaType}-config .social-strategy-count`);
+                                strategyInputs.forEach(input => {
+                                    totalAgents += parseInt(input.value) || 0;
+                                });
+                                
+                                console.log(`Total agents for ${dilemmaType}: ${totalAgents}`);
+                                
+                                if (totalAgents < 2) {
+                                    alert('At least 2 agents are required for the simulation. Please increase agent counts.');
+                                    return;
+                                }
+                                
+                                // Prepare config object
+                                const config = {
+                                    name: name,
+                                    description: document.getElementById('dilemma-description').value.trim(),
+                                    dilemma_type: dilemmaType,
+                                    rounds: rounds,
+                                    strategies: {}
+                                };
+                                
+                                // Add strategies based on dilemma type
+                                strategyInputs.forEach(input => {
+                                    const count = parseInt(input.value) || 0;
+                                    if (count > 0) {
+                                        config.strategies[input.dataset.strategy] = count;
+                                    }
+                                });
+                                
+                                // Add specific parameters for each dilemma type
+                                if (dilemmaType === 'tragedy_commons') {
+                                    config.parameters = {
+                                        resource_size: parseInt(document.getElementById('tc-resource-size').value),
+                                        regeneration_rate: parseFloat(document.getElementById('tc-regen-rate').value),
+                                        harvest_limit: parseInt(document.getElementById('tc-harvest-limit').value)
+                                    };
+                                } else if (dilemmaType === 'free_rider') {
+                                    config.parameters = {
+                                        project_cost: parseInt(document.getElementById('fr-project-cost').value),
+                                        benefit_multiplier: parseFloat(document.getElementById('fr-contribution-reward').value),
+                                        threshold: parseInt(document.getElementById('fr-threshold').value)
+                                    };
+                                } else if (dilemmaType === 'public_goods') {
+                                    config.parameters = {
+                                        endowment: parseInt(document.getElementById('pg-endowment').value),
+                                        multiplier: parseFloat(document.getElementById('pg-multiplier').value),
+                                        distribution: document.getElementById('pg-distribution').value
+                                    };
+                                }
+                                
+                                // Store the JSON in the hidden field
+                                document.getElementById('config-json').value = JSON.stringify(config);
+                                console.log('Form submission prepared:', config);
+                                
+                                // Continue with form submission
+                                document.getElementById('social-dilemma-form').submit();
+                            } catch (error) {
+                                console.error('Error preparing form submission:', error);
+                                alert('An error occurred while preparing form data: ' + error.message);
+                            }
+                        }
+                        </script>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Simulation Results -->
+            <div class="card mb-4">
+                <div class="card-header bg-secondary">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-chart-bar me-2"></i>Simulation Results
+                        </h3>
+                        <div class="d-flex justify-content-between" id="dilemma-controls" style="display: none;">
+                            <button class="btn btn-sm btn-primary me-1" id="dilemma-pause-btn">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger me-1" id="dilemma-stop-btn">
+                                <i class="fas fa-stop"></i>
+                            </button>
+                            <button class="btn btn-sm btn-success me-1" id="dilemma-step-btn">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="dilemma-results-container">
+                        <div id="dilemma-status" class="alert alert-info text-center">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Configure and run a simulation to see results.
+                        </div>
+                        
+                        <!-- Round Information -->
+                        <div id="dilemma-round-info" style="display: none;">
+                            <h4>Round: <span id="dilemma-current-round">0</span> of <span id="dilemma-total-rounds">0</span></h4>
+                            <div class="progress mb-3">
+                                <div id="dilemma-round-progress" class="progress-bar" role="progressbar" style="width: 0%;" 
+                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Charts Container -->
+                        <div class="row" id="dilemma-charts-container" style="display: none;">
+                            <div class="col-md-6 mb-4">
+                                <div class="chart-container">
+                                    <div class="chart-title" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                         title="<strong>Resource Status Over Time</strong><br>Shows how the common resource changes throughout the simulation as agents interact with it.">
+                                        <i class="fas fa-info-circle text-info me-1"></i> 
+                                        <span id="dilemma-chart1-title">Resource Status Over Time</span>
+                                    </div>
+                                    <canvas id="dilemma-chart1"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="chart-container">
+                                    <div class="chart-title" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                         title="<strong>Agent Scores</strong><br>Shows how different strategies perform in terms of accumulated resources or benefits.">
+                                        <i class="fas fa-info-circle text-info me-1"></i> 
+                                        <span id="dilemma-chart2-title">Agent Scores by Strategy</span>
+                                    </div>
+                                    <canvas id="dilemma-chart2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Results -->
+                        <div id="dilemma-detailed-results" style="display: none;">
+                            <h4>Detailed Results</h4>
+                            <div class="info-text mb-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" 
+                                 title="<strong>Understanding the Results</strong><br>
+                                 This table shows how each strategy performed in the simulation.
+                                 <ul>
+                                 <li><strong>Strategy:</strong> The type of behavior agents used</li>
+                                 <li><strong>Avg. Score:</strong> The average resources/benefits obtained per agent</li>
+                                 <li><strong>Sustainability Impact:</strong> How this strategy affected the common resource</li>
+                                 <li><strong>Social Welfare:</strong> Overall contribution to collective well-being</li>
+                                 </ul>">
+                                <i class="fas fa-info-circle text-info me-1"></i>
+                                Hover over table headers for more information about each metric
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th data-bs-toggle="tooltip" data-bs-placement="top" title="The strategy used by the agents">Strategy</th>
+                                            <th data-bs-toggle="tooltip" data-bs-placement="top" title="The average score achieved by agents using this strategy">Avg. Score</th>
+                                            <th data-bs-toggle="tooltip" data-bs-placement="top" title="How this strategy affects sustainability of shared resources">Sustainability Impact</th>
+                                            <th data-bs-toggle="tooltip" data-bs-placement="top" title="Contribution to overall social welfare">Social Welfare</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dilemma-results-table-body">
+                                        <!-- Populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Insights Panel -->
+                        <div id="dilemma-insights" class="card mt-4" style="display: none;">
+                            <div class="card-header bg-info text-white">
+                                <h4 class="card-title mb-0">
+                                    <i class="fas fa-lightbulb me-2"></i>Simulation Insights
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div id="dilemma-insights-content">
+                                    <!-- Populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+// Debug function to test button functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM content loaded in social_dilemmas.html');
+    
+    // Find the run button and directly attach a click handler
+    setTimeout(function() {
+        const runBtn = document.getElementById('run-dilemma-btn');
+        if (runBtn) {
+            console.log('Found run-dilemma-btn in DOM');
+            runBtn.addEventListener('click', function(e) {
+                console.log('Run button clicked via direct listener');
+                
+                // Get form data
+                const nameField = document.getElementById('dilemma-name');
+                const nameValue = nameField ? nameField.value : 'undefined';
+                console.log('Name field value:', nameValue);
+                
+                // Check if event is propagating
+                if (!nameValue || nameValue.trim() === '') {
+                    console.log('Name field is empty - validation should catch this');
+                }
+            });
+        } else {
+            console.error('run-dilemma-btn not found in DOM after timeout');
+        }
+    }, 1000);
+    
+    // Check for session data (results from redirect)
+    {% if session.get('simulation_results') and session.get('simulation_config') %}
+        console.log('Found simulation results in session, displaying...');
+        // Display the results once the page has loaded and charts are available
+        setTimeout(function() {
+            try {
+                const results = {{ session.simulation_results|tojson }};
+                const config = {{ session.simulation_config|tojson }};
+                
+                // Scroll to results section
+                document.getElementById('dilemma-results-section').scrollIntoView({ behavior: 'smooth' });
+                
+                // Display the results
+                displayDilemmaResults(results, config);
+                
+                console.log('Successfully displayed simulation results from session');
+            } catch (e) {
+                console.error('Error displaying session results:', e);
+            }
+        }, 1000);
+        
+        // Clear session data to avoid showing it again on refresh
+        {% set _ = session.pop('simulation_results', None) %}
+        {% set _ = session.pop('simulation_config', None) %}
+    {% endif %}
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/social-dilemmas.js') }}"></script>
+{% endblock %}
