@@ -1,7 +1,8 @@
 # Evolutionary Games with Multi-Agents
 
+Theodore Mui <theodoremui@gmail.com>
+
 __Sat May  3 16:26:53 PDT 2025__
-__Theodore Mui <theodoremui@gmail.com>
 
 A number of key folders:
 
