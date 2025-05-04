@@ -1,6 +1,6 @@
 # Evolutionary Games with Multi-Agents
 
-Theodore Mui <theodoremui@gmail.com>
+Theodore Mui <<theodoremui@gmail.com>>
 
 A number of key folders:
 
@@ -15,6 +15,7 @@ To setup the project with all requisite libraries, type the following at the pro
 
 ```
 uv sync
+source .venv/bin/activate
 ```
 
 
