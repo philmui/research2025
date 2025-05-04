@@ -1,4 +1,9 @@
 // Social Dilemmas Simulation JavaScript
+//
+// @author: Theodore Mui
+// @version: 1.0
+// @since: 2025-05-03
+//
 
 // Make sure Bootstrap is loaded before initializing
 function ensureBootstrap(callback) {

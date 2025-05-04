@@ -1,3 +1,16 @@
+##################################################################
+# app.py
+#
+# This file is the main entry point for the application.
+# It creates the Flask app and the database.
+# It also contains the routes for the application.
+#
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
+
 import os
 import logging
 

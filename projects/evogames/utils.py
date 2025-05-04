@@ -1,7 +1,13 @@
-import os
-import json
-import logging
-from datetime import datetime
+##################################################################
+# utils.py
+#
+# This file contains utility functions for the EvoGames application.
+#
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
 
 def get_data_dir():
     """Get the data directory path"""

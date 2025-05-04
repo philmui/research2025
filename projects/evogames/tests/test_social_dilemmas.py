@@ -1,9 +1,13 @@
-"""
-Unit tests for social dilemmas simulation module.
-
-These tests verify the correctness of the social dilemma simulations
-and ensure that agent strategies behave as expected.
-"""
+##################################################################
+# test_social_dilemmas.py
+#
+# This file contains unit tests for the social dilemmas simulation module.
+#
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
 
 import unittest
 import json

@@ -1,4 +1,9 @@
 // Chart configuration and utilities for EvoGames - Mui Lab
+//
+// @author: Theodore Mui
+// @version: 1.0
+// @since: 2025-05-03
+//
 
 // Function to generate random colors for chart datasets
 function generateColors(count) {

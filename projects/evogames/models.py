@@ -1,3 +1,14 @@
+##################################################################
+# models.py
+#
+# This file contains the models for the application.
+#
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
+
 from datetime import datetime
 from app import db
 

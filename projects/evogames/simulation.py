@@ -1,9 +1,21 @@
+##################################################################
+# simulation.py
+#
+# This file has the main abstractions for the simulations.
+# It contains the base strategy class and the factory class for
+# creating simulations.
+#
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
+
 import json
 import random
 import numpy as np
 from itertools import combinations
 import logging
-
 # Default constants for prisoner's dilemma payoffs
 # These can be overridden by config values
 # (T)emptation, (R)eward, (P)unishment, (S)ucker

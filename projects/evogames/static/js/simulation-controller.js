@@ -1,4 +1,9 @@
 // Simulation Controller for EvoGames - Mui Lab
+//
+// @author: Theodore Mui
+// @version: 1.0
+// @since: 2025-05-03
+//
 
 let currentSimulation = null;
 let simulationInterval = null;

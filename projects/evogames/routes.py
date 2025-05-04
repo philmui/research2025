@@ -1,3 +1,14 @@
+##################################################################
+# routes.py
+#
+# This file contains the routes for the application.
+#
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
+
 from flask import render_template, request, jsonify, redirect, url_for, flash, session
 import json
 import os

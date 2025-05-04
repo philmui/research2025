@@ -1,16 +1,21 @@
-"""
-Social Dilemmas Simulation Module
-
-This module implements various social dilemmas using agent-based modeling.
-Each dilemma has a specific set of rules, strategies, and outcomes.
-
-Included dilemmas:
-- Tragedy of the Commons
-- Free Rider Problem
-- Public Goods Dilemma
-
-Each simulation follows a similar structure but with domain-specific logic.
-"""
+##################################################################
+# social_dilemmas.py
+#
+# This file implements various social dilemmas using agent-based modeling.
+# Each dilemma has a specific set of rules, strategies, and outcomes.
+#
+# Included dilemmas:
+# - Tragedy of the Commons
+# - Free Rider Problem
+# - Public Goods Dilemma
+#
+# Each simulation follows a similar structure but with domain-specific logic.
+# 
+# @author: Theodore Mui
+# @version: 1.0
+# @since: 2025-05-03
+#
+##################################################################
 
 import random
 import numpy as np
