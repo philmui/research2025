@@ -11,6 +11,17 @@ A number of key folders:
 
 ## Initialization of project
 
+If you don't have `uv`, install uv on a Mac / Linux:
+
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+For a Windows machine:
+
+```
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
 To setup the project with all requisite libraries, type the following at the project toplevel:
 
 ```
