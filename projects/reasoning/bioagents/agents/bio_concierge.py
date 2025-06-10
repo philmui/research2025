@@ -11,10 +11,7 @@
 # Date: 2025-04-26
 #------------------------------------------------------------------------------
 
-from agents import (
-    Agent,
-    Runner
-)
+from datetime import datetime
 from loguru import logger
 
 from bioagents.agents.base_agent import ReasoningAgent

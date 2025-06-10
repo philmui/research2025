@@ -11,10 +11,10 @@ from agents import (
     Agent, ModelSettings, Runner, Tool,
     trace, gen_trace_id
 )
-from agents.tool import WebSearchTool
+from agents.tool import WebSearchTool, UserLocation
 from agents.tracing import set_tracing_disabled
 from loguru import logger
-import datetime
+from datetime import datetime
 
 from bioagents.models.llms import LLM
 from bioagents.agents.base_agent import ReasoningAgent
@@ -24,7 +24,7 @@ set_tracing_disabled(disabled=True)
 WEB_REASONING_INSTRUCTIONS = f"""
 You are an expert about the real time web and the latest information & news about general topics.
 Your response should include relevant inline citations.\n
-Today's date is {datetime.datetime.now().strftime('%Y-%m-%d')}.\n
+Today's date is {datetime.now().strftime('%Y-%m-%d')}.\n
 Respond in the same language as the question.
 """
 
@@ -36,8 +36,8 @@ class WebReasoningAgent(ReasoningAgent):
         self, name: str, 
         model_name: str=LLM.GPT_4_1_MINI, 
     ):
-        self.instructions = WEB_REASONING_INSTRUCTIONS
-        super().__init__(name, model_name, self.instructions)
+        instructions = WEB_REASONING_INSTRUCTIONS
+        super().__init__(name, model_name, instructions)
         self._agent = self._create_agent(name, model_name)
 
     def _create_agent(self, agent_name: str, model_name: str=LLM.GPT_4_1_MINI):
@@ -45,9 +45,11 @@ class WebReasoningAgent(ReasoningAgent):
             name=agent_name,
             model=model_name,
             instructions=self.instructions,
-            handoff_description="You are an expert about the real time web and the latest information & news about general topics.",
+            handoff_description=(
+                "You are an expert about the real time web and the latest information & news about general topics."
+            ),
             tools=[WebSearchTool(
-                search_context_size="low"
+                search_context_size="low",
             )],
             model_settings=ModelSettings(
                 tool_choice="required",
