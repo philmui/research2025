@@ -32,6 +32,10 @@ class ChitChatAgent(ReasoningAgent):
             name=agent_name,
             model=model_name,
             instructions=self.instructions,
+            handoff_description=(
+                "You are a friendly conversational assistant to chit chat with the user "
+                "and your responses should be very brief and to the point."
+            ),
             handoffs=[],
             tools=[],
         )

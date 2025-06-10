@@ -30,11 +30,10 @@ import asyncio
 import os
 import shutil
 import subprocess
-import time
 import requests
 import atexit
 import weakref
-from typing import Any, Optional, Union
+from typing import Any, Optional
 from contextlib import asynccontextmanager
 
 from agents import Agent, Runner, gen_trace_id, trace
@@ -130,6 +129,9 @@ class BioMCPAgent(ReasoningAgent):
         self._server_started = False  # Track server process only
         self._start_lock = asyncio.Lock()  # Prevent race conditions during auto-start
         self._auto_started = False  # Track if we auto-started (for cleanup)
+        
+        # Agent instance for reuse across operations
+        self._agent: Optional[Agent] = None
         
         # Configure logging
         if debug:
@@ -352,6 +354,7 @@ class BioMCPAgent(ReasoningAgent):
         
         # Reset state
         self._server_started = False
+        self._agent = None  # Reset agent to force recreation with new server
     
     async def _ensure_server_started(self) -> None:
         """
@@ -419,6 +422,7 @@ class BioMCPAgent(ReasoningAgent):
             
             # Reset state
             self._server_started = False
+            self._agent = None  # Reset agent to force recreation with new server
             
         except Exception as e:
             logger.debug(f"Synchronous cleanup completed: {e}")
@@ -466,15 +470,15 @@ class BioMCPAgent(ReasoningAgent):
             trace_id = gen_trace_id()
             
             with trace(workflow_name="Biomedical Query", trace_id=trace_id):
-                # Create connection for this operation only
                 async with await self._create_connection() as mcp_server:
-                    # Create agent for this operation only
-                    agent = self._create_agent(mcp_server)
+                    if self._agent is None:
+                        self._agent = self._create_agent(mcp_server)
+                    else:
+                        self._agent.mcp_servers = [mcp_server]
                     
-                    # Execute query with operation-scoped resources
                     result = await asyncio.wait_for(
                         Runner.run(
-                            starting_agent=agent,
+                            starting_agent=self._agent,
                             input=query_str,
                             max_turns=3,
                         ),

@@ -32,8 +32,7 @@ st.set_page_config(
 if "llm_client" not in st.session_state:
     st.session_state.llm_client = LLM(model=LLM.GPT_4_1_NANO)
 if "reasoner" not in st.session_state:
-    # st.session_state.reasoner = BioReasoningAgent(name="Bio Reasoner")
-    st.session_state.reasoner = BioMCPAgent(name="BioMCP")
+    st.session_state.reasoner = BioReasoningAgent(name="Bio Reasoner")
 
 #------------------------------------------------
 # Sidebar for user customizations
