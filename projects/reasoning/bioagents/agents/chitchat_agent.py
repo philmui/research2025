@@ -9,7 +9,7 @@
 
 from agents import Agent
 from bioagents.models.llms import LLM
-from bioagents.agents.reasoner import ReasoningAgent
+from bioagents.agents.base_agent import ReasoningAgent
 
 class ChitChatAgent(ReasoningAgent):
     """

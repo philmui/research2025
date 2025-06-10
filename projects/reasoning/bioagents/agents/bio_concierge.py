@@ -17,14 +17,14 @@ from agents import (
 )
 from loguru import logger
 
-from bioagents.agents.base import AgentResponse
-from bioagents.agents.chitchat_agent import ChitChatAgent
-from bioagents.agents.webreasoner import WebReasoningAgent
+from bioagents.agents.base_agent import ReasoningAgent
 from bioagents.agents.biomcp_agent import BioMCPAgent
+from bioagents.agents.chitchat_agent import ChitChatAgent
+from bioagents.agents.common import AgentResponse
 from bioagents.models.llms import LLM
-from bioagents.agents.reasoner import ReasoningAgent
+from bioagents.agents.web_agent import WebReasoningAgent
 
-class BioReasoningAgent(ReasoningAgent):
+class BioConciergeAgent(ReasoningAgent):
     def __init__(
         self, name: str, 
         model_name: str=LLM.GPT_4_1_NANO, 
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     import time
     
     start_time = time.time()
-    agent = BioReasoningAgent(name="Bio")
+    agent = BioConciergeAgent(name="Bio")
     response = asyncio.run(agent.achat("How are you?"))
     print(f"{str(response)} ({time.time() - start_time:.1f}s)")
     

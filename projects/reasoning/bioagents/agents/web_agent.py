@@ -17,8 +17,8 @@ from loguru import logger
 import datetime
 
 from bioagents.models.llms import LLM
-from bioagents.agents.reasoner import ReasoningAgent
-from bioagents.agents.base import AgentResponse
+from bioagents.agents.base_agent import ReasoningAgent
+from bioagents.agents.common import AgentResponse
 set_tracing_disabled(disabled=True)
 
 WEB_REASONING_INSTRUCTIONS = f"""

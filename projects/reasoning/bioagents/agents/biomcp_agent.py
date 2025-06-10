@@ -44,8 +44,8 @@ from loguru import logger
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
 
-from bioagents.agents.base import AgentResponse
-from bioagents.agents.reasoner import ReasoningAgent
+from bioagents.agents.common import AgentResponse
+from bioagents.agents.base_agent import ReasoningAgent
 from bioagents.models.llms import LLM
 
 class BioMCPAgentError(Exception):
