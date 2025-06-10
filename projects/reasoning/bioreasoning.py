@@ -16,6 +16,7 @@ import os
 import asyncio
 from bioagents.models.llms import LLM
 from bioagents.agents.base import AgentResponse
+from bioagents.agents.biomcp_agent import BioMCPAgent
 from bioagents.agents.bioreasoner import BioReasoningAgent
 from bioagents.agents.chitchat_agent import ChitChatAgent
 from bioagents.agents.webreasoner import WebReasoningAgent
@@ -31,7 +32,8 @@ st.set_page_config(
 if "llm_client" not in st.session_state:
     st.session_state.llm_client = LLM(model=LLM.GPT_4_1_NANO)
 if "reasoner" not in st.session_state:
-    st.session_state.reasoner = BioReasoningAgent(name="Bio Reasoner")
+    # st.session_state.reasoner = BioReasoningAgent(name="Bio Reasoner")
+    st.session_state.reasoner = BioMCPAgent(name="BioMCP")
 
 #------------------------------------------------
 # Sidebar for user customizations
