@@ -1,6 +1,7 @@
 from dotenv import load_dotenv, find_dotenv
 
 import asyncio
+import os
 from llama_index.core.agent.workflow import AgentWorkflow
 from llama_index.core.workflow import Context
 from llama_index.llms.openai import OpenAI
