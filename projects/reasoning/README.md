@@ -35,7 +35,7 @@ flowchart TB
     U[User Input] 
     
     %% Concierge Agent layer
-    U --> CA[Concierge Agent]
+    U --> CA1
     subgraph "Concierge Agent"
       CA1[Input Parser]
       CA2[Intent Classifier]
@@ -59,7 +59,7 @@ flowchart TB
     CC --> AG[Response Aggregator]
     BM --> AG
     WS --> AG
-    AG --> U
+    AG --> AR[Agent Response]
 ```
 
 
