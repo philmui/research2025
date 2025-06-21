@@ -16,7 +16,7 @@ from loguru import logger
 
 from bioagents.models.citation import Citation
 from bioagents.models.llms import LLM
-from bioagents.agents.base import AgentResponse
+from bioagents.agents.common import AgentResponse
 
 class ReasoningAgent:
     def __init__(

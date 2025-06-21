@@ -7,9 +7,10 @@
 # Date: 2025-04-26
 #------------------------------------------------------------------------------
 
+from datetime import datetime
 from agents import Agent
 from bioagents.models.llms import LLM
-from bioagents.agents.reasoner import ReasoningAgent
+from bioagents.agents.base_agent import ReasoningAgent
 
 class ChitChatAgent(ReasoningAgent):
     """
@@ -22,6 +23,8 @@ class ChitChatAgent(ReasoningAgent):
         instructions = (
             "You are a friendly conversational assistant but you should be very brief and to the point."
             "You should AVOID asking the user any question."
+            "You respond in the same language as the question."
+            f"Today's date is {datetime.now().strftime('%Y-%m-%d')}.\n"
         )
 
         super().__init__(name, model_name, instructions)
@@ -32,6 +35,10 @@ class ChitChatAgent(ReasoningAgent):
             name=agent_name,
             model=model_name,
             instructions=self.instructions,
+            handoff_description=(
+                "You are a friendly conversational assistant to chit chat with the user "
+                "and your responses should be very brief and to the point."
+            ),
             handoffs=[],
             tools=[],
         )
