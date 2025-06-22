@@ -238,6 +238,7 @@ dependencies = [
     { name = "llama-index" },
     { name = "llama-index-core" },
     { name = "llama-index-llms-openai" },
+    { name = "llama-index-memory-mem0" },
     { name = "llama-index-vector-stores-chroma" },
     { name = "llama-index-vector-stores-qdrant" },
     { name = "python-dotenv" },
@@ -251,6 +252,7 @@ requires-dist = [
     { name = "llama-index", specifier = ">=0.12.41" },
     { name = "llama-index-core", specifier = ">=0.12.41" },
     { name = "llama-index-llms-openai", specifier = ">=0.4.4" },
+    { name = "llama-index-memory-mem0", specifier = ">=0.3.1" },
     { name = "llama-index-vector-stores-chroma", specifier = ">=0.4.2" },
     { name = "llama-index-vector-stores-qdrant", specifier = ">=0.6.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
@@ -1271,6 +1273,19 @@ wheels = [
 ]
 
 [[package]]
+name = "llama-index-memory-mem0"
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "llama-index-core" },
+    { name = "mem0ai" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/54/8f/57782a1f3f6372a1cd4202963a5b3db07d3b96fcb174596e1c967f3eb23e/llama_index_memory_mem0-0.3.1.tar.gz", hash = "sha256:cfc802769086796da6dd5fce280c876fa0699c3113c483d2ebdc56e7a3893d6e", size = 5973 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/91/25/a9a2c56467f51c88a5eaa28895a1c3148bad10968ce251ab05e77e131e2c/llama_index_memory_mem0-0.3.1-py3-none-any.whl", hash = "sha256:1df5b7acd01f92c42e5998500c8562db2ef2d2e2f79fdd45f1033fd7f361230d", size = 6732 },
+]
+
+[[package]]
 name = "llama-index-multi-modal-llms-openai"
 version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1460,6 +1475,23 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979 },
+]
+
+[[package]]
+name = "mem0ai"
+version = "0.1.110"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "openai" },
+    { name = "posthog" },
+    { name = "pydantic" },
+    { name = "pytz" },
+    { name = "qdrant-client" },
+    { name = "sqlalchemy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8d/fd/95c6285ad55a5fb78df17f15b5710273d59ae687c6ff79dcd03acb15e24f/mem0ai-0.1.110.tar.gz", hash = "sha256:8a9b6f45c2c4e5d97ce1aa096dc85991cd657acccde796422b65a52089ca7fcb", size = 107869 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8a/d6/3d67909445682f5e73e910b187fc64ff84643709ac1956240d8a3834b1bd/mem0ai-0.1.110-py3-none-any.whl", hash = "sha256:4f69df6e633200b9d1b0177f82eaa96bf70a446aee8f40e56eedb67403f14395", size = 166820 },
 ]
 
 [[package]]
