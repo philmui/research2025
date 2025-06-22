@@ -61,7 +61,7 @@ async def process(user_input: str) -> str:
 if __name__ == "__main__":
     
     user_input = input("Enter your input: ")
-    while user_input.lower() != "":
+    while user_input.strip() != "":
         response = asyncio.run(process(user_input))
         print(f"Response: {response}")
         user_input = input("Enter your input: ")
