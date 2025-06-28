@@ -1,0 +1,3 @@
+[submodule "projects/memagents/eval/LongMemEval"]
+	path = projects/memagents/eval/LongMemEval
+	url = https://github.com/xiaowu0162/LongMemEval
