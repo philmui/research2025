@@ -176,7 +176,8 @@ class PropositionExtractionMemoryBlock(BaseMemoryBlock[str]):
             )
             response = await self.llm.achat(messages=[*messages, *prompt_messages])
             new_propositions = self._parse_propositions_xml(response.message.content or "")
-            self.propositions = new_propositions
+            if new_propositions:
+                self.propositions = new_propositions
 
     def _parse_propositions_xml(self, xml_text: str) -> List[str]:
         """Parse propositions from XML format."""
