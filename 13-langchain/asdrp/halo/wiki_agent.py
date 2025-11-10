@@ -35,18 +35,6 @@ def search_wikipedia(query: str) -> str:
         # Return the summary (first 500 characters to keep it concise)
         summary = page.summary[:500] if len(page.summary) > 500 else page.summary
         return f"Wikipedia article '{page_title}': {summary}"
-        
-    except wikipedia.exceptions.DisambiguationError as e:
-        # If there's a disambiguation page, get the first option
-        try:
-            page = wikipedia.page(e.options[0], auto_suggest=False)
-            summary = page.summary[:500] if len(page.summary) > 500 else page.summary
-            return f"Wikipedia article '{e.options[0]}': {summary}"
-        except Exception:
-            return f"Multiple Wikipedia articles found for '{query}'. Please be more specific."
-    
-    except wikipedia.exceptions.PageError:
-        return f"No Wikipedia page found for the query: {query}"
     
     except Exception as e:
         return f"Error searching Wikipedia: {str(e)}"
@@ -72,7 +60,7 @@ def create_wikipedia_agent(
     )
     
 #----------------------------------------------
-# Simple smoke test(
+# Simple smoke test
 #----------------------------------------------
 
 if __name__ == "__main__":
