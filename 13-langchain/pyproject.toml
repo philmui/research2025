@@ -24,4 +24,6 @@ dependencies = [
     "wikipedia>=1.4.0",
     "yfinance>=0.2.66",
     "arxiv>=2.1.0",
+    "matplotlib>=3.10.7",
+    "pandas>=2.3.3",
 ]
