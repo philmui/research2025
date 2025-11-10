@@ -30,7 +30,7 @@ def search_web(query: str) -> str:
         # Use OpenAI's Responses API with web search tool
         # The Responses API handles the web search automatically
         response = client.responses.create(
-            model="gpt-5",  # Use gpt-5 (latest recommended model) which supports web search
+            model="gpt-5-mini",
             input=query,
             tools=[{"type": "web_search"}],
         )

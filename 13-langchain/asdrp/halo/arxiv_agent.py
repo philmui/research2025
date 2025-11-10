@@ -95,6 +95,6 @@ def create_arxiv_agent(
 if __name__ == "__main__":
     agent = create_arxiv_agent()
     response = agent.invoke(
-        {"messages": [{"role": "user", "content": "What are the latest papers on large language models?"}]}
+        {"messages": [{"role": "user", "content": "What are the latest papers on multi-agent orchestration?"}]}
     )
     print(response["messages"][-1].content)
