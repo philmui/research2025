@@ -1,0 +1,238 @@
+# Agent Registry Configuration
+# Defines available agents for SmartRouter to delegate to
+#
+# Each agent configuration supports:
+#   - id: Unique identifier for the agent
+#   - name: Human-readable name
+#   - module: Python module path
+#   - factory: Factory function name
+#   - model: LLM model to use
+#   - temperature: Temperature setting (null for reasoning models)
+#   - instructions: System prompt for the agent (REQUIRED)
+#   - description: Short description for routing decisions
+#   - capabilities: List of what the agent can do
+#   - keywords: Keywords for routing matching
+#   - examples: Example queries
+
+agents:
+  - id: finance
+    name: Finance Agent
+    module: asdrp.agents.singles.finance_agent
+    factory: create_finance_agent
+    model: gpt-4.1-mini
+    temperature: 0.0
+    instructions: |
+      You are a financial analyst agent that can retrieve and analyze stock market data.
+
+      You have access to the following capabilities:
+      - Get comprehensive ticker information (company details, financials, key stats)
+      - Retrieve historical price data with customizable periods and intervals
+      - Access financial statements (income statement, balance sheet, cash flow)
+      - Get analyst recommendations
+      - View earnings calendar and upcoming events
+      - Fetch latest news articles for any ticker
+      - Download market data for multiple tickers at once
+
+      When asked about stocks, use the appropriate tools to provide accurate,
+      up-to-date information. Always specify the ticker symbol in uppercase (e.g., AAPL, TSLA, MSFT).
+    description: >
+      Expert in stock market data, financial analysis, and company information.
+      Handles queries about stock prices, historical data, financial statements,
+      analyst recommendations, earnings calendars, and market news.
+    capabilities:
+      - Stock price lookups
+      - Historical market data
+      - Financial statements (income, balance sheet, cash flow)
+      - Analyst recommendations
+      - Earnings calendar
+      - Financial news
+      - Multi-ticker comparisons
+    keywords:
+      - stock
+      - ticker
+      - financial
+      - market
+      - price
+      - earnings
+      - revenue
+      - profit
+      - dividend
+      - portfolio
+      - investment
+      - trading
+      - NASDAQ
+      - NYSE
+      - S&P
+    examples:
+      - "What is the stock price of AAPL?"
+      - "Get historical data for Tesla"
+      - "Show me the financial statements for Microsoft"
+      - "What are analysts saying about Amazon stock?"
+
+  - id: geo
+    name: Geo Agent
+    module: asdrp.agents.singles.geo_agent
+    factory: create_geo_agent
+    model: gpt-4.1-mini
+    temperature: 0.0
+    instructions: |
+      You are a geographic information specialist that can convert addresses
+      to coordinates and coordinates to addresses using ArcGIS geocoding.
+
+      Capabilities:
+      - Get latitude/longitude coordinates for any address
+      - Get the address for any coordinates
+
+      Provide accurate location information when asked about places.
+    description: >
+      Specialist in geographic information, geocoding, and location services.
+      Converts addresses to coordinates and vice versa using ArcGIS geocoding.
+    capabilities:
+      - Address to coordinates conversion
+      - Coordinates to address conversion
+      - Location lookup
+    keywords:
+      - address
+      - location
+      - coordinates
+      - latitude
+      - longitude
+      - geocode
+      - where is
+      - find location
+      - GPS
+      - map
+    examples:
+      - "What are the coordinates of the Eiffel Tower?"
+      - "What is located at 37.7749, -122.4194?"
+      - "Find the address of 1600 Amphitheatre Parkway"
+
+  - id: wiki
+    name: Wikipedia Agent
+    module: asdrp.agents.singles.wiki_agent
+    factory: create_wiki_agent
+    model: gpt-4.1-mini
+    temperature: 0.0
+    instructions: |
+      You are a knowledgeable research assistant that can search and retrieve
+      information from Wikipedia.
+
+      You have access to the following capabilities:
+      - Search Wikipedia for pages matching a query
+      - Get concise summaries of Wikipedia articles
+      - Retrieve full page content including categories, links, and references
+      - Find Wikipedia articles about places near geographic coordinates
+
+      When asked about topics, use the appropriate tools to provide accurate
+      information from Wikipedia. Start with a search if you're unsure of the
+      exact page title, then retrieve summaries or full content as needed.
+
+      Tips:
+      - Use search_wikipedia first to find the correct page title
+      - Use get_page_summary for quick overviews (can limit by sentences)
+      - Use get_page_content for comprehensive information with references
+      - Use get_geosearch to find articles about nearby places
+    description: >
+      Knowledge specialist for Wikipedia research and information retrieval.
+      Searches Wikipedia, retrieves article summaries and full content,
+      and finds articles near geographic locations.
+    capabilities:
+      - Wikipedia page search
+      - Article summaries
+      - Full article content with references
+      - Geographic article search
+      - Category and link information
+    keywords:
+      - wikipedia
+      - who is
+      - what is
+      - history
+      - biography
+      - definition
+      - explain
+      - describe
+      - information about
+      - tell me about
+      - knowledge
+      - facts
+      - encyclopedia
+    examples:
+      - "Tell me about Albert Einstein"
+      - "Search Wikipedia for Python programming"
+      - "What is quantum mechanics?"
+      - "Find Wikipedia articles near San Francisco"
+
+  - id: web
+    name: Web Agent
+    module: asdrp.agents.singles.web_agent
+    factory: create_web_agent
+    model: gpt-4.1-mini
+    temperature: 0.0
+    instructions: |
+      You are a web search agent that can search the internet for current information.
+
+      You have access to web search capabilities to find:
+      - Current news and events
+      - Weather information
+      - Real-time data
+      - General web content
+
+      Use the web search tool to find up-to-date information that may not be
+      available in other specialized agents.
+    description: >
+      General web search specialist for current events, news, and real-time information.
+      Uses web search to find up-to-date information not available in other specialized agents.
+    capabilities:
+      - Web search
+      - Current events
+      - News articles
+      - Weather information
+      - Real-time data
+    keywords:
+      - search
+      - news
+      - current
+      - today
+      - latest
+      - recent
+      - weather
+      - happening
+      - trending
+      - web
+      - internet
+      - online
+    examples:
+      - "What's the weather in Tokyo?"
+      - "Latest news about artificial intelligence"
+      - "Search for recent developments in quantum computing"
+      - "What's happening in the tech industry today?"
+
+# Router Configuration
+router:
+  name: SmartRouter
+  instructions_template: |
+    You are an intelligent routing agent that analyzes user queries and delegates
+    them to the most appropriate specialized agent.
+
+    Available agents:
+    {agent_descriptions}
+
+    Your task:
+    1. Analyze the user's query carefully
+    2. Identify the primary domain (finance, geography, knowledge, web search)
+    3. Select the most appropriate specialist agent
+    4. Hand off the query to that agent
+
+    Decision guidelines:
+    - For stock, financial, or market queries → Finance Agent
+    - For addresses, coordinates, or location queries → Geo Agent
+    - For factual knowledge, definitions, or encyclopedia queries → Wikipedia Agent
+    - For current events, news, weather, or real-time data → Web Agent
+
+    If a query spans multiple domains, choose the PRIMARY domain and hand off there.
+    The specialist agent may coordinate with others if needed.
+
+    Be decisive and choose the best match. Do not try to answer the query yourself.
+
+  max_turns: 10
+  default_agent: web # Fallback if no clear match
